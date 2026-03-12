@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss/preflight.css";
+
+:root {
+  /* Traininsight brand — teal → green (uit het logo) */
+  --brand-teal: #00C8BE;
+  --brand-mid: #1EC49A;
+  --brand-green: #52C87A;
+  --brand-gradient: linear-gradient(135deg, #00C8BE 0%, #1EC49A 50%, #52C87A 100%);
+  --brand-glow: rgba(0, 200, 190, 0.18);
+
+  /* Navy surfaces — lichter voor betere logo zichtbaarheid */
+  --bg-base: #141E30;
+  --bg-surface: #1A2640;
+  --bg-elevated: #1F2D4A;
+  --bg-card: #1C2A42;
+  --bg-card-hover: #243250;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.055);
+  --border-default: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(0, 200, 190, 0.35);
+  --border-card: rgba(255, 255, 255, 0.07);
+
+  /* Text — high contrast on dark */
+  --text-primary: #f5f5f7;
+  --text-secondary: rgba(245, 245, 247, 0.55);
+  --text-muted: rgba(245, 245, 247, 0.30);
+
+  /* Shadows — deep & rich */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-input: 0 2px 12px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-elevated: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 40px rgba(0, 200, 190, 0.15);
+
+  /* Legacy compat */
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', var(--font-geist-sans, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Brand gradient utility */
+.brand-gradient {
+  background: var(--brand-gradient);
+}
+
+.brand-gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Placeholder */
+::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.footer-logo-link { opacity: 0.8; transition: opacity 0.2s; }
+.footer-logo-link:hover { opacity: 1; }
+
+/* Custom scrollbar — thin & elegant */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 200, 190, 0.35);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 200, 190, 0.25);
+  color: #f5f5f7;
+}
+
+/* ── Animations ─────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 200, 190, 0.15); }
+  50%       { box-shadow: 0 0 40px rgba(0, 200, 190, 0.30); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.animate-scale-in {
+  animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Staggered delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Shimmer text effect */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--brand-teal) 0%,
+    #ffffff 25%,
+    var(--brand-mid) 50%,
+    #ffffff 75%,
+    var(--brand-teal) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Card hover — subtle lift */
+.card-hover {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 200, 190, 0.20) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,200,190,0.12) !important;
+}
+
+/* Glass surface */
+.glass {
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
