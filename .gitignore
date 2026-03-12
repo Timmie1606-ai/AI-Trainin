@@ -1,3 +1,11 @@
+
+# Vercel and build files
+.next/
+node_modules/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.env*
 # Root .gitignore
 .DS_Store
 *.pem
@@ -5,20 +13,6 @@
 
 
 # subdirectory specific
-trainin-vraag-ai/node_modules/
-trainin-vraag-ai/.pnp
-trainin-vraag-ai/.pnp.*
-trainin-vraag-ai/.next/
-trainin-vraag-ai/out/
-trainin-vraag-ai/build/
-trainin-vraag-ai/npm-debug.log*
-trainin-vraag-ai/yarn-debug.log*
-trainin-vraag-ai/yarn-error.log*
-trainin-vraag-ai/.pnpm-debug.log*
-trainin-vraag-ai/.env*
-trainin-vraag-ai/.vercel
-trainin-vraag-ai/*.tsbuildinfo
-trainin-vraag-ai/next-env.d.ts
 
 # Ignore the temporary gitignore
 .gitignore.subdirectory
