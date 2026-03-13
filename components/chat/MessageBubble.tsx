@@ -242,7 +242,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
           boxShadow: '0 2px 10px rgba(0,171,231,0.25)',
         }}>
           <Image
-            src="/traininsight-favicon.svg"
+            src="/favicon.svg"
             alt="Traininsight"
             width={66}
             height={36}

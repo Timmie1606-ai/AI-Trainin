@@ -30,8 +30,8 @@ export default function RootLayout({
     <html lang="nl" style={{ colorScheme: 'dark' }}>
       <head>
         <script src="https://cdn.tailwindcss.com" async></script>
-        <link rel="icon" type="image/svg+xml" href="/traininsight-favicon.svg" />
-        <link rel="apple-touch-icon" href="/traininsight-favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
         <meta name="theme-color" content="#050d1a" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>

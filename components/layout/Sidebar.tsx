@@ -52,7 +52,7 @@ export default function Sidebar() {
       <Link href="/chat" title="Traininsight" className="mb-4 flex items-center justify-center">
         <div style={{ width: '48px', height: '26px', borderRadius: '8px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Image
-            src="/traininsight-favicon.svg"
+            src="/favicon.svg"
             alt="Traininsight"
             width={48}
             height={26}

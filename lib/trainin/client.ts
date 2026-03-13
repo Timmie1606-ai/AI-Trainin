@@ -39,8 +39,14 @@ export class TraininClient {
   ): Promise<T> {
     const url = new URL(`${this.baseUrl}${endpoint}`)
 
-    if (params) {
-      Object.entries(params).forEach(([key, value]) => {
+    // Sensible defaults voor paginering als ze niet zijn meegegeven
+    const finalParams = { ...params }
+    if (!finalParams.perPage && !endpoint.includes('/')) { // Alleen voor lijst-endpoints
+      finalParams.perPage = 100
+    }
+
+    if (finalParams) {
+      Object.entries(finalParams).forEach(([key, value]) => {
         if (value !== undefined) {
           url.searchParams.set(key, String(value))
         }
@@ -57,10 +63,19 @@ export class TraininClient {
       })
 
       if (!response.ok) {
-        let message = `Trainin API fout: ${response.status} ${response.statusText}`
+        let message = `Trainin API fout: ${response.status} ${response.statusText} op ${endpoint}`
         try {
-          const errorBody = await response.json()
-          message = errorBody.message ?? errorBody.error ?? message
+          const bodyText = await response.text()
+          if (bodyText) {
+            try {
+              const errorBody = JSON.parse(bodyText)
+              message = errorBody.message ?? errorBody.error ?? message
+            } catch {
+              message = `${message} (Body: ${bodyText.slice(0, 100)})`
+            }
+          } else {
+            message = `${message} (geen response body)`
+          }
         } catch {
           // Gebruik standaard bericht
         }
@@ -71,7 +86,7 @@ export class TraininClient {
     } catch (err) {
       if (err instanceof TraininAPIError) throw err
       if (err instanceof Error && err.name === 'AbortError') {
-        throw new TraininAPIError(408, 'Verzoek duurt te lang (timeout). Probeer een kortere periode of minder data op te vragen.')
+        throw new TraininAPIError(408, `Verzoek naar ${endpoint} duurt te lang (timeout). Probeer een kortere periode of minder data op te vragen.`)
       }
       throw err
     } finally {
@@ -114,7 +129,7 @@ export class TraininClient {
     page?: number
     perPage?: number
   }): Promise<ClientsResponse> {
-    return this.request<ClientsResponse>('/clients', params)
+    return this.request<ClientsResponse>('/clients', { perPage: 100, ...params })
   }
 
   async getClient(ref: string, params?: { include?: string }): Promise<ClientsResponse> {
@@ -131,7 +146,7 @@ export class TraininClient {
     page?: number
     perPage?: number
   }): Promise<OrdersResponse> {
-    return this.request<OrdersResponse>('/orders', params)
+    return this.request<OrdersResponse>('/orders', { perPage: 100, ...params })
   }
 
   async getOrder(ref: string, params?: { include?: string }): Promise<OrdersResponse> {
@@ -146,7 +161,7 @@ export class TraininClient {
     page?: number
     perPage?: number
   }): Promise<SessionsResponse> {
-    return this.request<SessionsResponse>('/sessions', params)
+    return this.request<SessionsResponse>('/sessions', { perPage: 100, ...params })
   }
 
   async getSession(ref: string, params?: { include?: string }): Promise<SessionsResponse> {

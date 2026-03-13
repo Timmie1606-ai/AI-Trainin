@@ -4,7 +4,7 @@ export default function TypingIndicator() {
   return (
     <div className="flex items-end gap-2.5">
       <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: '66px', height: '36px' }}>
-        <Image src="/traininsight-favicon.svg" alt="Traininsight" width={66} height={36} style={{ display: 'block', objectFit: 'contain', width: '100%', height: '100%' }} />
+        <Image src="/favicon.svg" alt="Traininsight" width={66} height={36} style={{ display: 'block', objectFit: 'contain', width: '100%', height: '100%' }} />
       </div>
       <div
         className="px-4 py-3 rounded-2xl"
