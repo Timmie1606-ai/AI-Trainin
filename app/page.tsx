@@ -427,11 +427,11 @@ export default async function Home() {
           {[
             {
               step: 1,
-              title: 'Koppel je account',
-              body: 'Voer eenmalig je Trainin API Key in. Wij regelen de volledige setup — je hoeft niets technisch te doen.',
+              title: 'Neem contact op',
+              body: 'Stuur ons een bericht en wij regelen de volledige koppeling met jouw Trainin account. Jij hoeft niets technisch te doen.',
               icon: (
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               ),
             },
