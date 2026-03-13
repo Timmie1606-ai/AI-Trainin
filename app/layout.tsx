@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl">
+    <html lang="nl" style={{ colorScheme: 'dark' }}>
       <head>
         <script src="https://cdn.tailwindcss.com" async></script>
         <link rel="icon" type="image/svg+xml" href="/traininsight-favicon.svg" />

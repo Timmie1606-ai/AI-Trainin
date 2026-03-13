@@ -38,29 +38,7 @@
   --foreground: var(--text-primary);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-base: #f0f6ff;
-    --bg-surface: #ffffff;
-    --bg-elevated: #e8f2ff;
-    --bg-card: #ffffff;
-    --bg-card-hover: #eef4ff;
-
-    --border-subtle: rgba(0, 81, 194, 0.08);
-    --border-default: rgba(0, 81, 194, 0.12);
-    --border-strong: rgba(0, 81, 194, 0.35);
-    --border-card: rgba(0, 81, 194, 0.10);
-
-    --text-primary: #0a1628;
-    --text-secondary: rgba(10, 22, 40, 0.60);
-    --text-muted: rgba(10, 22, 40, 0.38);
-
-    --shadow-card: 0 1px 3px rgba(0,81,194,0.08), 0 4px 16px rgba(0,81,194,0.06);
-    --shadow-input: 0 2px 8px rgba(0,81,194,0.10), 0 1px 3px rgba(0,81,194,0.06);
-    --shadow-elevated: 0 8px 32px rgba(0,81,194,0.10), 0 2px 8px rgba(0,81,194,0.06);
-    --shadow-glow: 0 0 40px rgba(0, 171, 231, 0.10);
-  }
-}
+/* Dark-only app — no light mode override */
 
 @theme inline {
   --color-background: var(--background);
