@@ -29,7 +29,7 @@ export default async function Home() {
         maxWidth: '960px',
         backdropFilter: 'blur(28px) saturate(200%)',
         WebkitBackdropFilter: 'blur(28px) saturate(200%)',
-        background: 'rgba(28, 35, 60, 0.90)',
+        background: 'rgba(5, 13, 26, 0.92)',
         border: '1px solid rgba(255,255,255,0.08)',
         borderRadius: '20px',
         boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)',
@@ -66,7 +66,7 @@ export default async function Home() {
                   borderRadius: '12px',
                   textDecoration: 'none',
                   background: 'var(--brand-gradient)',
-                  boxShadow: '0 2px 12px rgba(0,200,190,0.28)',
+                  boxShadow: '0 2px 12px rgba(0,171,231,0.28)',
                   letterSpacing: '-0.01em',
                 }}>
                   Open Chat →
@@ -81,7 +81,7 @@ export default async function Home() {
                 borderRadius: '12px',
                 textDecoration: 'none',
                 background: 'var(--brand-gradient)',
-                boxShadow: '0 2px 12px rgba(0,200,190,0.28)',
+                boxShadow: '0 2px 12px rgba(0,171,231,0.28)',
                 letterSpacing: '-0.01em',
               }}>
                 Inloggen
@@ -106,9 +106,9 @@ export default async function Home() {
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
           background: `
-            radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,200,190,0.12) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 40% at 20% 60%, rgba(46,191,142,0.07) 0%, transparent 60%),
-            radial-gradient(ellipse 40% 40% at 80% 40%, rgba(0,200,190,0.05) 0%, transparent 60%)
+            radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,171,231,0.14) 0%, transparent 70%),
+            radial-gradient(ellipse 40% 40% at 20% 60%, rgba(0,81,194,0.08) 0%, transparent 60%),
+            radial-gradient(ellipse 40% 40% at 80% 40%, rgba(0,171,231,0.06) 0%, transparent 60%)
           `,
         }} />
 
@@ -129,8 +129,8 @@ export default async function Home() {
               marginBottom: '28px',
               padding: '6px 16px 6px 8px',
               borderRadius: '980px',
-              border: '1px solid rgba(0,200,190,0.20)',
-              background: 'rgba(0,200,190,0.06)',
+              border: '1px solid rgba(0,171,231,0.20)',
+              background: 'rgba(0,171,231,0.06)',
             }}
           >
             <span style={{
@@ -208,7 +208,7 @@ export default async function Home() {
                 textDecoration: 'none',
                 background: 'var(--brand-gradient)',
                 letterSpacing: '-0.02em',
-                boxShadow: '0 4px 24px rgba(0,200,190,0.30), 0 1px 3px rgba(0,0,0,0.3)',
+                boxShadow: '0 4px 24px rgba(0,171,231,0.30), 0 1px 3px rgba(0,0,0,0.3)',
                 transition: 'transform 0.15s ease, box-shadow 0.15s ease',
               }}>
                 Open de Chat
@@ -229,7 +229,7 @@ export default async function Home() {
                 textDecoration: 'none',
                 background: 'var(--brand-gradient)',
                 letterSpacing: '-0.02em',
-                boxShadow: '0 4px 24px rgba(0,200,190,0.30), 0 1px 3px rgba(0,0,0,0.3)',
+                boxShadow: '0 4px 24px rgba(0,171,231,0.30), 0 1px 3px rgba(0,0,0,0.3)',
               }}>
                 Inloggen
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -285,7 +285,7 @@ export default async function Home() {
                     fontWeight: 500,
                     maxWidth: '72%',
                     lineHeight: 1.5,
-                    boxShadow: '0 4px 16px rgba(0,200,190,0.25)',
+                    boxShadow: '0 4px 16px rgba(0,171,231,0.25)',
                   }}>
                     Hoeveel omzet heb ik deze maand?
                   </div>
@@ -299,11 +299,11 @@ export default async function Home() {
                     gap: '7px',
                     padding: '6px 12px',
                     borderRadius: '10px',
-                    background: 'rgba(0,200,190,0.07)',
-                    border: '1px solid rgba(0,200,190,0.14)',
+                    background: 'rgba(0,171,231,0.07)',
+                    border: '1px solid rgba(0,171,231,0.14)',
                     fontSize: '11px',
                     fontWeight: 600,
-                    color: '#00C8BE',
+                    color: '#00abe7',
                     letterSpacing: '0.01em',
                   }}>
                     <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -329,10 +329,10 @@ export default async function Home() {
                     maxWidth: '78%',
                     lineHeight: 1.7,
                   }}>
-                    <p>Je omzet deze maand bedraagt <strong style={{ color: '#52C87A', fontWeight: 700 }}>€ 12.450,—</strong></p>
+                    <p>Je omzet deze maand bedraagt <strong style={{ color: '#00f2f6', fontWeight: 700 }}>€ 12.450,—</strong></p>
                     <p style={{ marginTop: '6px', color: 'rgba(245,245,247,0.55)', fontSize: '13px' }}>
                       Gebaseerd op <strong style={{ color: '#f5f5f7', fontWeight: 600 }}>47 bestellingen</strong>. Ten opzichte van vorige maand is dit
-                      <strong style={{ color: '#52C87A', fontWeight: 600 }}> +14%</strong>.
+                      <strong style={{ color: '#00f2f6', fontWeight: 600 }}> +14%</strong>.
                     </p>
                   </div>
                 </div>
@@ -359,7 +359,7 @@ export default async function Home() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 2px 8px rgba(0,200,190,0.28)',
+                    boxShadow: '0 2px 8px rgba(0,171,231,0.28)',
                   }}>
                     <svg width="13" height="13" fill="none" stroke="white" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
@@ -424,7 +424,7 @@ export default async function Home() {
             fontWeight: 700,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: '#00C8BE',
+            color: '#00abe7',
             marginBottom: '14px',
           }}>
             Mogelijkheden
@@ -464,18 +464,18 @@ export default async function Home() {
             <div style={{
               position: 'absolute', top: 0, right: 0,
               width: '200px', height: '200px',
-              background: 'radial-gradient(ellipse, rgba(0,200,190,0.08) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse, rgba(0,171,231,0.08) 0%, transparent 70%)',
               pointerEvents: 'none',
             }} />
             <div style={{
               width: '44px', height: '44px',
               borderRadius: '14px',
-              background: 'rgba(0,200,190,0.10)',
-              border: '1px solid rgba(0,200,190,0.18)',
+              background: 'rgba(0,171,231,0.10)',
+              border: '1px solid rgba(0,171,231,0.18)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: '20px',
             }}>
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00C8BE" strokeWidth={1.75}>
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
               </svg>
             </div>
@@ -491,9 +491,9 @@ export default async function Home() {
           <div className="card-hover" style={{
             gridColumn: '4 / 7',
             gridRow: '1 / 2',
-            background: 'linear-gradient(135deg, rgba(0,200,190,0.08) 0%, rgba(46,191,142,0.06) 100%)',
+            background: 'linear-gradient(135deg, rgba(0,171,231,0.08) 0%, rgba(0,81,194,0.06) 100%)',
             borderRadius: '24px',
-            border: '1px solid rgba(0,200,190,0.14)',
+            border: '1px solid rgba(0,171,231,0.14)',
             padding: '36px 36px 32px',
             boxShadow: 'var(--shadow-card)',
             position: 'relative',
@@ -502,12 +502,12 @@ export default async function Home() {
             <div style={{
               width: '44px', height: '44px',
               borderRadius: '14px',
-              background: 'rgba(0,200,190,0.12)',
-              border: '1px solid rgba(0,200,190,0.22)',
+              background: 'rgba(0,171,231,0.12)',
+              border: '1px solid rgba(0,171,231,0.22)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: '20px',
             }}>
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00C8BE" strokeWidth={1.75}>
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
@@ -526,10 +526,10 @@ export default async function Home() {
               gap: '8px',
               padding: '8px 14px',
               borderRadius: '12px',
-              background: 'rgba(0,229,190,0.08)',
-              border: '1px solid rgba(0,229,190,0.15)',
+              background: 'rgba(0,171,231,0.08)',
+              border: '1px solid rgba(0,171,231,0.15)',
             }}>
-              <span style={{ fontSize: '18px', fontWeight: 800, color: '#52C87A', letterSpacing: '-0.04em' }}>+14%</span>
+              <span style={{ fontSize: '18px', fontWeight: 800, color: '#00f2f6', letterSpacing: '-0.04em' }}>+14%</span>
               <span style={{ fontSize: '12px', color: 'rgba(245,245,247,0.45)', fontWeight: 500 }}>t.o.v. vorige maand</span>
             </div>
           </div>
@@ -547,12 +547,12 @@ export default async function Home() {
             <div style={{
               width: '44px', height: '44px',
               borderRadius: '14px',
-              background: 'rgba(0,200,190,0.08)',
-              border: '1px solid rgba(0,200,190,0.14)',
+              background: 'rgba(0,171,231,0.08)',
+              border: '1px solid rgba(0,171,231,0.14)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: '16px',
             }}>
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00C8BE" strokeWidth={1.75}>
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
@@ -598,21 +598,21 @@ export default async function Home() {
           <div className="card-hover" style={{
             gridColumn: '5 / 7',
             gridRow: '2 / 3',
-            background: 'linear-gradient(135deg, rgba(0,229,190,0.06) 0%, rgba(0,200,190,0.04) 100%)',
+            background: 'linear-gradient(135deg, rgba(0,171,231,0.06) 0%, rgba(0,81,194,0.04) 100%)',
             borderRadius: '24px',
-            border: '1px solid rgba(0,229,190,0.12)',
+            border: '1px solid rgba(0,171,231,0.12)',
             padding: '30px 30px 28px',
             boxShadow: 'var(--shadow-card)',
           }}>
             <div style={{
               width: '44px', height: '44px',
               borderRadius: '14px',
-              background: 'rgba(0,229,190,0.10)',
-              border: '1px solid rgba(0,229,190,0.18)',
+              background: 'rgba(0,171,231,0.10)',
+              border: '1px solid rgba(0,171,231,0.18)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: '16px',
             }}>
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#52C87A" strokeWidth={1.75}>
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18M10 3v18M14 3v18M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
               </svg>
             </div>
@@ -631,14 +631,14 @@ export default async function Home() {
       <section style={{ maxWidth: '960px', margin: '0 auto', padding: '0 24px 120px' }}>
         <div style={{
           padding: '44px 48px',
-          background: 'rgba(0,200,190,0.03)',
-          border: '1px solid rgba(0,200,190,0.10)',
+          background: 'rgba(0,171,231,0.03)',
+          border: '1px solid rgba(0,171,231,0.10)',
           borderRadius: '28px',
           backdropFilter: 'blur(12px)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '28px', flexWrap: 'wrap', gap: '12px' }}>
             <div>
-              <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00C8BE', marginBottom: '8px' }}>
+              <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00abe7', marginBottom: '8px' }}>
                 Voorbeeldvragen
               </p>
               <h3 style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '-0.03em', color: '#f5f5f7' }}>
@@ -689,10 +689,10 @@ export default async function Home() {
       }}>
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0,200,190,0.10) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0,171,231,0.10) 0%, transparent 70%)',
         }} />
         <div style={{ position: 'relative', maxWidth: '600px', margin: '0 auto' }}>
-          <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00C8BE', marginBottom: '20px' }}>
+          <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00abe7', marginBottom: '20px' }}>
             Interesse?
           </p>
           <h2 style={{
@@ -721,7 +721,7 @@ export default async function Home() {
               textDecoration: 'none',
               background: 'var(--brand-gradient)',
               letterSpacing: '-0.02em',
-              boxShadow: '0 4px 32px rgba(0,200,190,0.35), 0 1px 3px rgba(0,0,0,0.4)',
+              boxShadow: '0 4px 32px rgba(0,171,231,0.35), 0 1px 3px rgba(0,0,0,0.4)',
             }}>
               Open de Chat
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -741,7 +741,7 @@ export default async function Home() {
               textDecoration: 'none',
               background: 'var(--brand-gradient)',
               letterSpacing: '-0.02em',
-              boxShadow: '0 4px 32px rgba(0,200,190,0.35), 0 1px 3px rgba(0,0,0,0.4)',
+              boxShadow: '0 4px 32px rgba(0,171,231,0.35), 0 1px 3px rgba(0,0,0,0.4)',
             }}>
               Inloggen
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">

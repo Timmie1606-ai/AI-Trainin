@@ -2,40 +2,64 @@
 @import "tailwindcss/preflight.css";
 
 :root {
-  /* Traininsight brand — teal → green (uit het logo) */
-  --brand-teal: #00C8BE;
-  --brand-mid: #1EC49A;
-  --brand-green: #52C87A;
-  --brand-gradient: linear-gradient(135deg, #00C8BE 0%, #1EC49A 50%, #52C87A 100%);
-  --brand-glow: rgba(0, 200, 190, 0.18);
+  /* Traininsight brand — cyaan → blauw (officiële logo kleuren) */
+  --brand-cyan: #00f2f6;
+  --brand-blue: #00abe7;
+  --brand-deep: #0051c2;
+  --brand-gradient: linear-gradient(135deg, #00f2f6 0%, #00abe7 50%, #0051c2 100%);
+  --brand-glow: rgba(0, 171, 231, 0.18);
 
-  /* Navy surfaces — lichter voor betere logo zichtbaarheid */
-  --bg-base: #141E30;
-  --bg-surface: #1A2640;
-  --bg-elevated: #1F2D4A;
-  --bg-card: #1C2A42;
-  --bg-card-hover: #243250;
+  /* Dark mode surfaces (default) */
+  --bg-base: #050d1a;
+  --bg-surface: #091228;
+  --bg-elevated: #0d1a36;
+  --bg-card: #0b1630;
+  --bg-card-hover: #112040;
 
   /* Borders */
-  --border-subtle: rgba(255, 255, 255, 0.055);
-  --border-default: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(0, 200, 190, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(0, 171, 231, 0.35);
   --border-card: rgba(255, 255, 255, 0.07);
 
   /* Text — high contrast on dark */
-  --text-primary: #f5f5f7;
-  --text-secondary: rgba(245, 245, 247, 0.55);
-  --text-muted: rgba(245, 245, 247, 0.30);
+  --text-primary: #f0f8ff;
+  --text-secondary: rgba(240, 248, 255, 0.55);
+  --text-muted: rgba(240, 248, 255, 0.30);
 
   /* Shadows — deep & rich */
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
-  --shadow-input: 0 2px 12px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3);
-  --shadow-elevated: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
-  --shadow-glow: 0 0 40px rgba(0, 200, 190, 0.15);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-input: 0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-elevated: 0 8px 40px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 40px rgba(0, 171, 231, 0.12);
 
   /* Legacy compat */
   --background: var(--bg-base);
   --foreground: var(--text-primary);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-base: #f0f6ff;
+    --bg-surface: #ffffff;
+    --bg-elevated: #e8f2ff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #eef4ff;
+
+    --border-subtle: rgba(0, 81, 194, 0.08);
+    --border-default: rgba(0, 81, 194, 0.12);
+    --border-strong: rgba(0, 81, 194, 0.35);
+    --border-card: rgba(0, 81, 194, 0.10);
+
+    --text-primary: #0a1628;
+    --text-secondary: rgba(10, 22, 40, 0.60);
+    --text-muted: rgba(10, 22, 40, 0.38);
+
+    --shadow-card: 0 1px 3px rgba(0,81,194,0.08), 0 4px 16px rgba(0,81,194,0.06);
+    --shadow-input: 0 2px 8px rgba(0,81,194,0.10), 0 1px 3px rgba(0,81,194,0.06);
+    --shadow-elevated: 0 8px 32px rgba(0,81,194,0.10), 0 2px 8px rgba(0,81,194,0.06);
+    --shadow-glow: 0 0 40px rgba(0, 171, 231, 0.10);
+  }
 }
 
 @theme inline {
@@ -84,13 +108,13 @@ body {
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 200, 190, 0.35);
+  background: rgba(0, 171, 231, 0.35);
 }
 
 /* Selection */
 ::selection {
-  background: rgba(0, 200, 190, 0.25);
-  color: #f5f5f7;
+  background: rgba(0, 171, 231, 0.25);
+  color: #f0f8ff;
 }
 
 /* ── Animations ─────────────────────────────────────── */
@@ -116,8 +140,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 200, 190, 0.15); }
-  50%       { box-shadow: 0 0 40px rgba(0, 200, 190, 0.30); }
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 171, 231, 0.15); }
+  50%       { box-shadow: 0 0 40px rgba(0, 171, 231, 0.30); }
 }
 
 @keyframes float {
@@ -152,11 +176,11 @@ body {
 .shimmer-text {
   background: linear-gradient(
     90deg,
-    var(--brand-teal) 0%,
+    var(--brand-cyan) 0%,
     #ffffff 25%,
-    var(--brand-mid) 50%,
+    var(--brand-blue) 50%,
     #ffffff 75%,
-    var(--brand-teal) 100%
+    var(--brand-cyan) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -174,8 +198,8 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-2px);
-  border-color: rgba(0, 200, 190, 0.20) !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,200,190,0.12) !important;
+  border-color: rgba(0, 171, 231, 0.20) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,171,231,0.12) !important;
 }
 
 /* Glass surface */

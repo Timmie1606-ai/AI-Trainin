@@ -19,7 +19,7 @@ function renderMarkdown(text: string): string {
   return text
     .replace(/\*\*(.*?)\*\*/g, '<strong style="font-weight:700;color:var(--text-primary)">$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/`(.*?)`/g, '<code style="background:rgba(0,200,190,0.08);color:#00C8BE;padding:2px 8px;border-radius:6px;font-size:0.82em;font-family:monospace;border:1px solid rgba(0,200,190,0.14)">$1</code>')
+    .replace(/`(.*?)`/g, '<code style="background:rgba(0,171,231,0.08);color:#00abe7;padding:2px 8px;border-radius:6px;font-size:0.82em;font-family:monospace;border:1px solid rgba(0,171,231,0.14)">$1</code>')
     .replace(/^### (.*$)/gm, '<h3 style="font-weight:700;font-size:0.93em;margin-top:18px;margin-bottom:6px;color:var(--text-primary);letter-spacing:-0.02em">$1</h3>')
     .replace(/^## (.*$)/gm, '<h2 style="font-weight:700;font-size:1.03em;margin-top:22px;margin-bottom:8px;color:var(--text-primary);letter-spacing:-0.025em">$1</h2>')
     .replace(/^[-•] (.*$)/gm, '<li style="margin-left:18px;list-style-type:disc;margin-bottom:5px;color:rgba(245,245,247,0.75)">$1</li>')
@@ -73,7 +73,7 @@ function DataTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
       }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8em' }}>
           <thead>
-            <tr style={{ background: 'rgba(0,200,190,0.07)', borderBottom: '1px solid rgba(0,200,190,0.14)' }}>
+            <tr style={{ background: 'rgba(0,171,231,0.07)', borderBottom: '1px solid rgba(0,171,231,0.14)' }}>
               {headers.map((h, i) => (
                 <th
                   key={i}
@@ -81,7 +81,7 @@ function DataTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
                     padding: '9px 14px',
                     textAlign: 'left',
                     fontWeight: 700,
-                    color: '#00C8BE',
+                    color: '#00abe7',
                     whiteSpace: 'nowrap',
                     fontSize: '11px',
                     letterSpacing: '0.03em',
@@ -131,9 +131,9 @@ function DataTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
           gap: '6px',
           padding: '6px 14px',
           borderRadius: '10px',
-          border: '1px solid rgba(0,200,190,0.22)',
-          background: 'rgba(0,200,190,0.07)',
-          color: '#00C8BE',
+          border: '1px solid rgba(0,171,231,0.22)',
+          background: 'rgba(0,171,231,0.07)',
+          color: '#00abe7',
           fontSize: '11.5px',
           fontWeight: 600,
           cursor: 'pointer',
@@ -141,12 +141,12 @@ function DataTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
           transition: 'all 0.15s ease',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = 'rgba(0,200,190,0.13)'
-          e.currentTarget.style.borderColor = 'rgba(0,200,190,0.32)'
+          e.currentTarget.style.background = 'rgba(0,171,231,0.13)'
+          e.currentTarget.style.borderColor = 'rgba(0,171,231,0.32)'
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'rgba(0,200,190,0.07)'
-          e.currentTarget.style.borderColor = 'rgba(0,200,190,0.22)'
+          e.currentTarget.style.background = 'rgba(0,171,231,0.07)'
+          e.currentTarget.style.borderColor = 'rgba(0,171,231,0.22)'
         }}
       >
         <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,7 +239,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
           borderRadius: '10px',
           overflow: 'hidden',
           marginBottom: '2px',
-          boxShadow: '0 2px 10px rgba(0,200,190,0.25)',
+          boxShadow: '0 2px 10px rgba(0,171,231,0.25)',
         }}>
           <Image
             src="/traininsight-favicon.svg"
@@ -281,7 +281,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
                     fontSize: '14px',
                     lineHeight: 1.65,
                     fontWeight: 500,
-                    boxShadow: '0 4px 16px rgba(0,200,190,0.22)',
+                    boxShadow: '0 4px 16px rgba(0,171,231,0.22)',
                     letterSpacing: '-0.01em',
                   }
                 : {

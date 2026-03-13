@@ -90,19 +90,19 @@ export default function CredentialsForm({ existing }: CredentialsFormProps) {
           gap: '12px',
           padding: '14px 16px',
           borderRadius: '12px',
-          background: isVerified ? 'rgba(0,212,170,0.08)' : 'rgba(251,191,36,0.08)',
-          border: `1px solid ${isVerified ? 'rgba(0,212,170,0.2)' : 'rgba(251,191,36,0.2)'}`,
+          background: isVerified ? 'rgba(0,171,231,0.08)' : 'rgba(251,191,36,0.08)',
+          border: `1px solid ${isVerified ? 'rgba(0,171,231,0.2)' : 'rgba(251,191,36,0.2)'}`,
         }}>
           <div style={{
             width: '8px',
             height: '8px',
             borderRadius: '50%',
             flexShrink: 0,
-            background: isVerified ? '#00d4aa' : '#fbbf24',
-            boxShadow: isVerified ? '0 0 6px rgba(0,212,170,0.5)' : '0 0 6px rgba(251,191,36,0.5)',
+            background: isVerified ? '#00abe7' : '#fbbf24',
+            boxShadow: isVerified ? '0 0 6px rgba(0,171,231,0.5)' : '0 0 6px rgba(251,191,36,0.5)',
           }} />
           <div style={{ flex: 1 }}>
-            <p style={{ fontSize: '13px', fontWeight: 600, color: isVerified ? '#00d4aa' : '#fbbf24' }}>
+            <p style={{ fontSize: '13px', fontWeight: 600, color: isVerified ? '#00abe7' : '#fbbf24' }}>
               {isVerified ? 'Verbonden' : 'Niet geverifieerd'}
             </p>
             {accountName && (
@@ -145,7 +145,7 @@ export default function CredentialsForm({ existing }: CredentialsFormProps) {
             style={inputStyle}
             onFocus={(e) => {
               e.currentTarget.style.borderColor = 'var(--border-strong)'
-              e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0,200,190,0.10)'
+              e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0,171,231,0.10)'
             }}
             onBlur={(e) => {
               e.currentTarget.style.borderColor = 'var(--border-default)'
@@ -170,7 +170,7 @@ export default function CredentialsForm({ existing }: CredentialsFormProps) {
             style={inputStyle}
             onFocus={(e) => {
               e.currentTarget.style.borderColor = 'var(--border-strong)'
-              e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0,200,190,0.10)'
+              e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0,171,231,0.10)'
             }}
             onBlur={(e) => {
               e.currentTarget.style.borderColor = 'var(--border-default)'
@@ -195,10 +195,10 @@ export default function CredentialsForm({ existing }: CredentialsFormProps) {
         {saveStatus === 'saved' && (
           <div style={{
             padding: '12px 14px',
-            background: 'rgba(0,212,170,0.1)',
-            border: '1px solid rgba(0,212,170,0.25)',
+            background: 'rgba(0,171,231,0.1)',
+            border: '1px solid rgba(0,171,231,0.25)',
             borderRadius: '10px',
-            color: '#00d4aa',
+            color: '#00abe7',
             fontSize: '13px',
           }}>
             Credentials opgeslagen. Klik op &ldquo;Verbinding verifiëren&rdquo; om te testen.
@@ -208,10 +208,10 @@ export default function CredentialsForm({ existing }: CredentialsFormProps) {
         {verifyStatus === 'success' && (
           <div style={{
             padding: '12px 14px',
-            background: 'rgba(0,212,170,0.1)',
-            border: '1px solid rgba(0,212,170,0.25)',
+            background: 'rgba(0,171,231,0.1)',
+            border: '1px solid rgba(0,171,231,0.25)',
             borderRadius: '10px',
-            color: '#00d4aa',
+            color: '#00abe7',
             fontSize: '13px',
           }}>
             Verbinding succesvol geverifieerd{accountName ? ` voor ${accountName}` : ''}!

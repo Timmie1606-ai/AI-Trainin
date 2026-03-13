@@ -54,10 +54,10 @@ export default function ChatInput({ onSend, disabled, placeholder }: ChatInputPr
           gap: '12px',
           padding: '12px 14px 12px 18px',
           background: 'var(--bg-surface)',
-          border: `1px solid ${focused ? 'rgba(0,200,190,0.32)' : 'var(--border-default)'}`,
+          border: `1px solid ${focused ? 'rgba(0,171,231,0.32)' : 'var(--border-default)'}`,
           borderRadius: '22px',
           boxShadow: focused
-            ? '0 0 0 3px rgba(0,200,190,0.08), var(--shadow-input)'
+            ? '0 0 0 3px rgba(0,171,231,0.08), var(--shadow-input)'
             : 'var(--shadow-input)',
           transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
         }}
@@ -83,7 +83,7 @@ export default function ChatInput({ onSend, disabled, placeholder }: ChatInputPr
             fontSize: '14px',
             fontWeight: 400,
             lineHeight: 1.6,
-            caretColor: '#00C8BE',
+            caretColor: '#00abe7',
             fontFamily: 'inherit',
             opacity: disabled ? 0.45 : 1,
           }}
@@ -107,20 +107,20 @@ export default function ChatInput({ onSend, disabled, placeholder }: ChatInputPr
               ? 'var(--brand-gradient)'
               : 'rgba(255,255,255,0.06)',
             color: canSend ? '#fff' : 'var(--text-muted)',
-            boxShadow: canSend ? '0 2px 10px rgba(0,200,190,0.30)' : 'none',
+            boxShadow: canSend ? '0 2px 10px rgba(0,171,231,0.30)' : 'none',
             transition: 'all 0.15s cubic-bezier(0.16,1,0.3,1)',
             transform: 'scale(1)',
           }}
           onMouseEnter={(e) => {
             if (canSend) {
               e.currentTarget.style.transform = 'scale(1.07)'
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,200,190,0.40)'
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,171,231,0.40)'
             }
           }}
           onMouseLeave={(e) => {
             if (canSend) {
               e.currentTarget.style.transform = 'scale(1)'
-              e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,200,190,0.30)'
+              e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,171,231,0.30)'
             }
           }}
         >

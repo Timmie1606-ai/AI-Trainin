@@ -30,9 +30,9 @@ const CATEGORIES = [
       </svg>
     ),
     label: 'Omzet',
-    accent: '#00C8BE',
-    bg: 'rgba(0,200,190,0.08)',
-    border: 'rgba(0,200,190,0.18)',
+    accent: '#00abe7',
+    bg: 'rgba(0,171,231,0.08)',
+    border: 'rgba(0,171,231,0.18)',
     questions: ['Hoeveel omzet heb ik deze maand?', 'Vergelijk mijn omzet met vorige maand'],
   },
   {
@@ -42,9 +42,9 @@ const CATEGORIES = [
       </svg>
     ),
     label: 'Klanten',
-    accent: '#52C87A',
-    bg: 'rgba(0,229,190,0.07)',
-    border: 'rgba(0,229,190,0.16)',
+    accent: '#00f2f6',
+    bg: 'rgba(0,171,231,0.07)',
+    border: 'rgba(0,171,231,0.16)',
     questions: ['Welke klanten hebben al 30 dagen niet geboekt?', 'Hoeveel nieuwe klanten heb ik deze maand?'],
   },
   {
@@ -89,7 +89,7 @@ export default function MessageList({ messages, isLoading, onSend }: MessageList
         <div style={{ width: '100%', maxWidth: '680px' }}>
           {/* Welcome heading */}
           <div style={{ textAlign: 'center', marginBottom: '44px' }}>
-            <div style={{ width: '120px', height: '120px', borderRadius: '28px', overflow: 'hidden', margin: '0 auto 20px', boxShadow: '0 8px 32px rgba(0,200,190,0.28)' }}>
+            <div style={{ width: '120px', height: '120px', borderRadius: '28px', overflow: 'hidden', margin: '0 auto 20px', boxShadow: '0 8px 32px rgba(0,171,231,0.28)' }}>
               <img src="/traininsight-favicon.svg" alt="Traininsight" width={120} height={120} style={{ display: 'block', objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
             <h2 style={{

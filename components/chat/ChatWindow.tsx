@@ -236,12 +236,12 @@ export default function ChatWindow({ initialConversations, credentialsStatus }: 
             <div style={{
               width: '28px', height: '28px',
               borderRadius: '9px',
-              background: 'rgba(0,200,190,0.10)',
-              border: '1px solid rgba(0,200,190,0.16)',
+              background: 'rgba(0,171,231,0.10)',
+              border: '1px solid rgba(0,171,231,0.16)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               flexShrink: 0,
             }}>
-              <svg width="13" height="13" fill="none" stroke="#00C8BE" viewBox="0 0 24 24">
+              <svg width="13" height="13" fill="none" stroke="#00abe7" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
               </svg>
             </div>
@@ -267,23 +267,23 @@ export default function ChatWindow({ initialConversations, credentialsStatus }: 
                 gap: '6px',
                 fontSize: '12px',
                 fontWeight: 600,
-                color: '#00C8BE',
+                color: '#00abe7',
                 padding: '6px 14px',
                 borderRadius: '10px',
-                border: '1px solid rgba(0,200,190,0.18)',
-                background: 'rgba(0,200,190,0.07)',
+                border: '1px solid rgba(0,171,231,0.18)',
+                background: 'rgba(0,171,231,0.07)',
                 cursor: 'pointer',
                 flexShrink: 0,
                 letterSpacing: '-0.01em',
                 transition: 'all 0.15s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(0,200,190,0.13)'
-                e.currentTarget.style.borderColor = 'rgba(0,200,190,0.28)'
+                e.currentTarget.style.background = 'rgba(0,171,231,0.13)'
+                e.currentTarget.style.borderColor = 'rgba(0,171,231,0.28)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(0,200,190,0.07)'
-                e.currentTarget.style.borderColor = 'rgba(0,200,190,0.18)'
+                e.currentTarget.style.background = 'rgba(0,171,231,0.07)'
+                e.currentTarget.style.borderColor = 'rgba(0,171,231,0.18)'
               }}
             >
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

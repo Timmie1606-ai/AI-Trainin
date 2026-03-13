@@ -88,14 +88,14 @@ export default function ConversationSidebar({
             border: 'none',
             cursor: 'pointer',
             letterSpacing: '-0.01em',
-            boxShadow: '0 2px 10px rgba(0,200,190,0.22)',
+            boxShadow: '0 2px 10px rgba(0,171,231,0.22)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,200,190,0.32)'
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,171,231,0.32)'
             e.currentTarget.style.transform = 'translateY(-1px)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,200,190,0.22)'
+            e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,171,231,0.22)'
             e.currentTarget.style.transform = 'translateY(0)'
           }}
         >
@@ -142,8 +142,8 @@ export default function ConversationSidebar({
                     className="w-full text-left rounded-xl transition-all"
                     style={{
                       padding: '10px 36px 10px 12px',
-                      background: isActive ? 'rgba(0,200,190,0.10)' : 'transparent',
-                      border: `1px solid ${isActive ? 'rgba(0,200,190,0.18)' : 'transparent'}`,
+                      background: isActive ? 'rgba(0,171,231,0.10)' : 'transparent',
+                      border: `1px solid ${isActive ? 'rgba(0,171,231,0.18)' : 'transparent'}`,
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',
                       width: '100%',
@@ -165,7 +165,7 @@ export default function ConversationSidebar({
                       <div style={{
                         width: '6px', height: '6px',
                         borderRadius: '50%',
-                        background: isActive ? '#00C8BE' : 'transparent',
+                        background: isActive ? '#00abe7' : 'transparent',
                         flexShrink: 0,
                         marginTop: '5px',
                         transition: 'background 0.15s',

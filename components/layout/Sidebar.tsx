@@ -75,15 +75,15 @@ export default function Sidebar() {
               style={
                 isActive
                   ? {
-                      background: 'rgba(0, 200, 190, 0.10)',
-                      color: '#00C8BE',
-                      border: '1px solid rgba(0, 200, 190, 0.20)',
+                      background: 'rgba(0, 171, 231, 0.10)',
+                      color: '#00abe7',
+                      border: '1px solid rgba(0, 171, 231, 0.20)',
                     }
                   : { color: 'var(--text-muted)', border: '1px solid transparent' }
               }
               onMouseEnter={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.04)'
+                  e.currentTarget.style.background = 'rgba(0, 171, 231, 0.06)'
                   e.currentTarget.style.color = 'var(--text-secondary)'
                 }
               }}

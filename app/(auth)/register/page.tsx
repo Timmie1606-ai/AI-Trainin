@@ -74,7 +74,7 @@ export default function RegisterPage() {
                 color: 'var(--text-primary)',
               }}
               placeholder="Jan de Vries"
-              onFocus={(e) => e.target.style.borderColor = '#00C8BE'}
+              onFocus={(e) => e.target.style.borderColor = '#00abe7'}
               onBlur={(e) => e.target.style.borderColor = 'var(--border-default)'}
               suppressHydrationWarning
             />
@@ -97,7 +97,7 @@ export default function RegisterPage() {
                 color: 'var(--text-primary)',
               }}
               placeholder="jouw@email.nl"
-              onFocus={(e) => e.target.style.borderColor = '#00C8BE'}
+              onFocus={(e) => e.target.style.borderColor = '#00abe7'}
               onBlur={(e) => e.target.style.borderColor = 'var(--border-default)'}
               suppressHydrationWarning
             />
@@ -121,7 +121,7 @@ export default function RegisterPage() {
                 color: 'var(--text-primary)',
               }}
               placeholder="Minimaal 8 tekens"
-              onFocus={(e) => e.target.style.borderColor = '#00C8BE'}
+              onFocus={(e) => e.target.style.borderColor = '#00abe7'}
               onBlur={(e) => e.target.style.borderColor = 'var(--border-default)'}
               suppressHydrationWarning
             />
@@ -153,7 +153,7 @@ export default function RegisterPage() {
 
       <p className="text-center text-sm mt-6" style={{ color: 'var(--text-muted)' }}>
         Al een account?{' '}
-        <Link href="/login" className="font-medium hover:opacity-80 transition-opacity" style={{ color: '#00C8BE' }}>
+        <Link href="/login" className="font-medium hover:opacity-80 transition-opacity" style={{ color: '#00abe7' }}>
           Inloggen
         </Link>
       </p>

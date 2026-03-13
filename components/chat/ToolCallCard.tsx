@@ -49,9 +49,9 @@ export default function ToolCallCard({ toolName, status }: ToolCallCardProps) {
     <div
       className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs max-w-xs"
       style={{
-        background: 'rgba(0, 200, 190, 0.08)',
-        border: '1px solid rgba(0, 200, 190, 0.2)',
-        color: '#00C8BE',
+        background: 'rgba(0, 171, 231, 0.08)',
+        border: '1px solid rgba(0, 171, 231, 0.2)',
+        color: '#00abe7',
       }}
     >
       <span className="flex-shrink-0 opacity-80">{icon}</span>
@@ -63,7 +63,7 @@ export default function ToolCallCard({ toolName, status }: ToolCallCardProps) {
             <span
               key={i}
               className="w-1 h-1 rounded-full animate-bounce"
-              style={{ background: '#00C8BE', animationDelay: `${i * 0.15}s` }}
+              style={{ background: '#00abe7', animationDelay: `${i * 0.15}s` }}
             />
           ))}
         </span>

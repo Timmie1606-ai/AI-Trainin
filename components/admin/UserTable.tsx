@@ -290,10 +290,10 @@ export default function UserTable({ initialUsers }: { initialUsers: User[] }) {
                             fontSize: '11px',
                             fontWeight: 600,
                             padding: '2px 7px',
-                            background: 'rgba(0,200,190,0.12)',
-                            color: '#00C8BE',
+                            background: 'rgba(0,171,231,0.12)',
+                            color: '#00abe7',
                             borderRadius: '6px',
-                            border: '1px solid rgba(0,200,190,0.2)',
+                            border: '1px solid rgba(0,171,231,0.2)',
                           }}>
                             Admin
                           </span>
@@ -311,10 +311,10 @@ export default function UserTable({ initialUsers }: { initialUsers: User[] }) {
                           width: '7px',
                           height: '7px',
                           borderRadius: '50%',
-                          background: user.credentials.is_verified ? '#00d4aa' : '#fbbf24',
-                          boxShadow: user.credentials.is_verified ? '0 0 5px rgba(0,212,170,0.5)' : '0 0 5px rgba(251,191,36,0.5)',
+                          background: user.credentials.is_verified ? '#00abe7' : '#fbbf24',
+                          boxShadow: user.credentials.is_verified ? '0 0 5px rgba(0,171,231,0.5)' : '0 0 5px rgba(251,191,36,0.5)',
                         }} />
-                        <span style={{ fontSize: '12px', color: user.credentials.is_verified ? '#00d4aa' : '#fbbf24', fontWeight: 500 }}>
+                        <span style={{ fontSize: '12px', color: user.credentials.is_verified ? '#00abe7' : '#fbbf24', fontWeight: 500 }}>
                           {user.credentials.is_verified
                             ? user.credentials.trainin_account_name ?? 'Verbonden'
                             : 'Niet geverifieerd'}
@@ -403,7 +403,7 @@ export default function UserTable({ initialUsers }: { initialUsers: User[] }) {
                     )}
 
                     {credStatus === 'saved' && (
-                      <div style={{ padding: '10px 14px', background: 'rgba(0,212,170,0.1)', border: '1px solid rgba(0,212,170,0.25)', borderRadius: '10px', color: '#00d4aa', fontSize: '13px', marginBottom: '12px' }}>
+                      <div style={{ padding: '10px 14px', background: 'rgba(0,171,231,0.1)', border: '1px solid rgba(0,171,231,0.25)', borderRadius: '10px', color: '#00abe7', fontSize: '13px', marginBottom: '12px' }}>
                         Credentials opgeslagen.
                       </div>
                     )}

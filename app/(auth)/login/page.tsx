@@ -67,7 +67,7 @@ export default function LoginPage() {
                 color: 'var(--text-primary)',
               }}
               placeholder="jouw@email.nl"
-              onFocus={(e) => e.target.style.borderColor = '#00C8BE'}
+              onFocus={(e) => e.target.style.borderColor = '#00abe7'}
               onBlur={(e) => e.target.style.borderColor = 'var(--border-default)'}
               suppressHydrationWarning
             />
@@ -90,7 +90,7 @@ export default function LoginPage() {
                 color: 'var(--text-primary)',
               }}
               placeholder="••••••••"
-              onFocus={(e) => e.target.style.borderColor = '#00C8BE'}
+              onFocus={(e) => e.target.style.borderColor = '#00abe7'}
               onBlur={(e) => e.target.style.borderColor = 'var(--border-default)'}
               suppressHydrationWarning
             />
@@ -122,7 +122,7 @@ export default function LoginPage() {
 
       <p className="text-center text-sm mt-6" style={{ color: 'var(--text-muted)' }}>
         Nog geen account?{' '}
-        <Link href="/register" className="font-medium hover:opacity-80 transition-opacity" style={{ color: '#00C8BE' }}>
+        <Link href="/register" className="font-medium hover:opacity-80 transition-opacity" style={{ color: '#00abe7' }}>
           Gratis registreren
         </Link>
       </p>
