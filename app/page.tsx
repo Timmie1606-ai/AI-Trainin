@@ -9,11 +9,14 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser()
   const isLoggedIn = !!user
 
+  const ctaHref = isLoggedIn ? '/chat' : '/login'
+  const ctaLabel = isLoggedIn ? 'Open de Chat' : 'Begin nu gratis'
+
   return (
     <main style={{
       background: 'var(--bg-base)',
       color: 'var(--text-primary)',
-      fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+      fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
       minHeight: '100vh',
       overflowX: 'hidden',
     }}>
@@ -27,12 +30,12 @@ export default async function Home() {
         zIndex: 100,
         width: 'calc(100% - 48px)',
         maxWidth: '960px',
-        backdropFilter: 'blur(28px) saturate(200%)',
-        WebkitBackdropFilter: 'blur(28px) saturate(200%)',
-        background: 'rgba(5, 13, 26, 0.92)',
-        border: '1px solid rgba(255,255,255,0.08)',
+        backdropFilter: 'blur(32px) saturate(200%)',
+        WebkitBackdropFilter: 'blur(32px) saturate(200%)',
+        background: 'rgba(5, 13, 26, 0.90)',
+        border: '1px solid rgba(255,255,255,0.07)',
         borderRadius: '20px',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
       }}>
         <div style={{
           padding: '10px 20px',
@@ -41,7 +44,7 @@ export default async function Home() {
           justifyContent: 'space-between',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Image src="/trainin-logo-cropped.svg" alt="Traininsight" width={188} height={70} priority style={{ display: 'block', objectFit: 'contain' }} />
+            <Image src="/trainin-logo-cropped.svg" alt="Traininsight" width={170} height={64} priority style={{ display: 'block', objectFit: 'contain' }} />
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -50,7 +53,7 @@ export default async function Home() {
                 <Link href="/api/auth/signout" style={{
                   fontSize: '13px',
                   fontWeight: 500,
-                  color: 'rgba(245,245,247,0.45)',
+                  color: 'rgba(245,245,247,0.40)',
                   padding: '7px 16px',
                   borderRadius: '12px',
                   textDecoration: 'none',
@@ -66,10 +69,17 @@ export default async function Home() {
                   borderRadius: '12px',
                   textDecoration: 'none',
                   background: 'var(--brand-gradient)',
-                  boxShadow: '0 2px 12px rgba(0,171,231,0.28)',
+                  boxShadow: '0 2px 16px rgba(0,171,231,0.30)',
                   letterSpacing: '-0.01em',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  cursor: 'pointer',
                 }}>
-                  Open Chat →
+                  Open Chat
+                  <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </>
             ) : (
@@ -81,8 +91,9 @@ export default async function Home() {
                 borderRadius: '12px',
                 textDecoration: 'none',
                 background: 'var(--brand-gradient)',
-                boxShadow: '0 2px 12px rgba(0,171,231,0.28)',
+                boxShadow: '0 2px 16px rgba(0,171,231,0.30)',
                 letterSpacing: '-0.01em',
+                cursor: 'pointer',
               }}>
                 Inloggen
               </Link>
@@ -98,7 +109,7 @@ export default async function Home() {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        padding: '140px 24px 80px',
+        padding: '148px 24px 72px',
         position: 'relative',
         overflow: 'hidden',
       }}>
@@ -106,69 +117,62 @@ export default async function Home() {
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
           background: `
-            radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,171,231,0.14) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 40% at 20% 60%, rgba(0,81,194,0.08) 0%, transparent 60%),
-            radial-gradient(ellipse 40% 40% at 80% 40%, rgba(0,171,231,0.06) 0%, transparent 60%)
+            radial-gradient(ellipse 90% 70% at 50% -5%, rgba(0,171,231,0.16) 0%, transparent 65%),
+            radial-gradient(ellipse 50% 50% at 20% 65%, rgba(0,81,194,0.09) 0%, transparent 60%),
+            radial-gradient(ellipse 50% 50% at 80% 40%, rgba(0,171,231,0.07) 0%, transparent 60%)
           `,
         }} />
-
-        {/* Noise texture overlay */}
+        {/* Noise texture */}
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.025,
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }} />
 
-        <div style={{ position: 'relative', maxWidth: '800px', margin: '0 auto' }}>
+        <div style={{ position: 'relative', maxWidth: '820px', margin: '0 auto' }}>
+
           {/* Eyebrow badge */}
-          <div
-            className="animate-fade-in-up"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '28px',
-              padding: '6px 16px 6px 8px',
-              borderRadius: '980px',
-              border: '1px solid rgba(0,171,231,0.20)',
-              background: 'rgba(0,171,231,0.06)',
-            }}
-          >
+          <div className="animate-fade-in-up" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '32px',
+            padding: '5px 14px 5px 6px',
+            borderRadius: '980px',
+            border: '1px solid rgba(0,171,231,0.22)',
+            background: 'rgba(0,171,231,0.07)',
+          }}>
             <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '5px',
               padding: '3px 10px',
               borderRadius: '980px',
               background: 'var(--brand-gradient)',
               fontSize: '10px',
               fontWeight: 700,
               color: '#fff',
-              letterSpacing: '0.06em',
+              letterSpacing: '0.07em',
               textTransform: 'uppercase',
-            }}>
-              Nieuw
-            </span>
-            <span style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(245,245,247,0.6)' }}>
-              Traininsight — AI voor Trainin-ondernemers
+            }}>Nieuw</span>
+            <span style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(245,245,247,0.60)' }}>
+              AI-assistent voor Trainin-ondernemers
             </span>
           </div>
 
           {/* Headline */}
           <h1
-            className="animate-fade-in-up delay-100"
+            className="animate-fade-in-up delay-100 font-display"
             style={{
-              fontSize: 'clamp(48px, 8vw, 88px)',
+              fontSize: 'clamp(52px, 9vw, 96px)',
               fontWeight: 800,
-              letterSpacing: '-0.04em',
-              lineHeight: 1.0,
-              marginBottom: '28px',
+              lineHeight: 0.95,
+              marginBottom: '12px',
+              fontFamily: "'Barlow Condensed', 'Plus Jakarta Sans', sans-serif",
+              letterSpacing: '-0.01em',
             }}
           >
-            <span style={{ color: '#f5f5f7' }}>Vraag alles over<br /></span>
-            <span className="shimmer-text">je bedrijfsdata.</span>
+            <span style={{ color: '#f5f5f7' }}>VRAAG ALLES<br />OVER JE</span>{' '}
+            <span className="shimmer-text">BEDRIJF.</span>
           </h1>
 
-          {/* Subheading */}
+          {/* Sub-headline */}
           <p
             className="animate-fade-in-up delay-200"
             style={{
@@ -176,103 +180,85 @@ export default async function Home() {
               fontWeight: 400,
               lineHeight: 1.7,
               color: 'rgba(245,245,247,0.50)',
-              marginBottom: '44px',
-              maxWidth: '520px',
-              margin: '0 auto 44px',
+              maxWidth: '500px',
+              margin: '24px auto 44px',
             }}
           >
-            Stel vragen in gewoon Nederlands. Krijg direct inzicht in je omzet, klanten en boekingen — rechtstreeks uit Trainin.
+            Stel vragen in gewoon Nederlands en krijg direct inzicht in je omzet,
+            klanten en boekingen — rechtstreeks uit Trainin.
           </p>
 
-          {/* CTAs */}
-          <div
-            className="animate-fade-in-up delay-300"
-            style={{
-              display: 'flex',
-              gap: '12px',
-              justifyContent: 'center',
-              flexWrap: 'wrap',
-              marginBottom: '80px',
-            }}
-          >
-            {isLoggedIn ? (
-              <Link href="/chat" style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '15px',
-                fontWeight: 700,
-                color: '#fff',
-                padding: '15px 32px',
-                borderRadius: '16px',
-                textDecoration: 'none',
-                background: 'var(--brand-gradient)',
-                letterSpacing: '-0.02em',
-                boxShadow: '0 4px 24px rgba(0,171,231,0.30), 0 1px 3px rgba(0,0,0,0.3)',
-                transition: 'transform 0.15s ease, box-shadow 0.15s ease',
-              }}>
-                Open de Chat
-                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            ) : (
-              <Link href="/login" style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '15px',
-                fontWeight: 700,
-                color: '#fff',
-                padding: '15px 32px',
-                borderRadius: '16px',
-                textDecoration: 'none',
-                background: 'var(--brand-gradient)',
-                letterSpacing: '-0.02em',
-                boxShadow: '0 4px 24px rgba(0,171,231,0.30), 0 1px 3px rgba(0,0,0,0.3)',
-              }}>
-                Inloggen
-                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            )}
+          {/* CTA */}
+          <div className="animate-fade-in-up delay-300" style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '72px' }}>
+            <Link href={ctaHref} style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontSize: '15px',
+              fontWeight: 700,
+              color: '#fff',
+              padding: '15px 32px',
+              borderRadius: '16px',
+              textDecoration: 'none',
+              background: 'var(--brand-gradient)',
+              letterSpacing: '-0.02em',
+              boxShadow: '0 4px 28px rgba(0,171,231,0.35), 0 1px 3px rgba(0,0,0,0.3)',
+              cursor: 'pointer',
+              transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+            }}>
+              {ctaLabel}
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <a href="#hoe-het-werkt" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontSize: '15px',
+              fontWeight: 600,
+              color: 'rgba(245,245,247,0.55)',
+              padding: '14px 24px',
+              borderRadius: '16px',
+              textDecoration: 'none',
+              border: '1px solid rgba(255,255,255,0.09)',
+              background: 'rgba(255,255,255,0.03)',
+              letterSpacing: '-0.01em',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease',
+            }}>
+              Hoe het werkt
+            </a>
           </div>
 
           {/* Chat preview mockup */}
-          <div
-            className="animate-scale-in delay-400 animate-float"
-            style={{
-              maxWidth: '600px',
-              margin: '0 auto',
-            }}
-          >
+          <div className="animate-scale-in delay-400 animate-float" style={{ maxWidth: '580px', margin: '0 auto' }}>
             <div style={{
-              background: 'linear-gradient(145deg, #111520 0%, #0c0f18 100%)',
+              background: 'linear-gradient(145deg, #0e1827 0%, #091220 100%)',
               border: '1px solid rgba(255,255,255,0.07)',
               borderRadius: '24px',
               overflow: 'hidden',
-              boxShadow: '0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.05)',
+              boxShadow: '0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)',
             }}>
               {/* Window chrome */}
               <div style={{
-                padding: '14px 18px',
-                borderBottom: '1px solid rgba(255,255,255,0.05)',
-                background: 'rgba(0,0,0,0.2)',
+                padding: '13px 18px',
+                borderBottom: '1px solid rgba(255,255,255,0.06)',
+                background: 'rgba(0,0,0,0.25)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '7px',
+                gap: '6px',
               }}>
                 <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: '#ff5f57' }} />
                 <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: '#febc2e' }} />
                 <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: '#28c840' }} />
-                <span style={{ flex: 1, textAlign: 'center', fontSize: '11px', fontWeight: 500, color: 'rgba(255,255,255,0.18)', marginRight: '38px' }}>
-                  Traininsight
+                <span style={{ flex: 1, textAlign: 'center', fontSize: '11px', fontWeight: 500, color: 'rgba(255,255,255,0.16)', marginRight: '38px' }}>
+                  Traininsight AI
                 </span>
               </div>
 
               {/* Chat messages */}
-              <div style={{ padding: '28px 22px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {/* User bubble */}
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <div style={{
@@ -286,6 +272,7 @@ export default async function Home() {
                     maxWidth: '72%',
                     lineHeight: 1.5,
                     boxShadow: '0 4px 16px rgba(0,171,231,0.25)',
+                    textAlign: 'left',
                   }}>
                     Hoeveel omzet heb ik deze maand?
                   </div>
@@ -296,8 +283,8 @@ export default async function Home() {
                   <div style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '7px',
-                    padding: '6px 12px',
+                    gap: '6px',
+                    padding: '5px 12px',
                     borderRadius: '10px',
                     background: 'rgba(0,171,231,0.07)',
                     border: '1px solid rgba(0,171,231,0.14)',
@@ -315,8 +302,8 @@ export default async function Home() {
 
                 {/* AI bubble */}
                 <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
-                  <div style={{ width: '36px', height: '36px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
-                    <Image src="/traininsight-favicon.svg" alt="Traininsight" width={36} height={36} style={{ display: 'block', objectFit: 'cover', width: '100%', height: '100%' }} />
+                  <div style={{ width: '34px', height: '34px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
+                    <Image src="/traininsight-favicon.svg" alt="Traininsight" width={34} height={34} style={{ display: 'block', width: '100%', height: '100%' }} />
                   </div>
                   <div style={{
                     padding: '14px 18px',
@@ -328,11 +315,12 @@ export default async function Home() {
                     fontSize: '14px',
                     maxWidth: '78%',
                     lineHeight: 1.7,
+                    textAlign: 'left',
                   }}>
-                    <p>Je omzet deze maand bedraagt <strong style={{ color: '#00f2f6', fontWeight: 700 }}>€ 12.450,—</strong></p>
-                    <p style={{ marginTop: '6px', color: 'rgba(245,245,247,0.55)', fontSize: '13px' }}>
-                      Gebaseerd op <strong style={{ color: '#f5f5f7', fontWeight: 600 }}>47 bestellingen</strong>. Ten opzichte van vorige maand is dit
-                      <strong style={{ color: '#00f2f6', fontWeight: 600 }}> +14%</strong>.
+                    <p>Je omzet deze maand is <strong style={{ color: '#00f2f6', fontWeight: 700 }}>€ 12.450</strong></p>
+                    <p style={{ marginTop: '6px', color: 'rgba(245,245,247,0.50)', fontSize: '13px' }}>
+                      Gebaseerd op <strong style={{ color: '#f5f5f7', fontWeight: 600 }}>47 bestellingen</strong>. Dat is
+                      <strong style={{ color: '#00f2f6', fontWeight: 600 }}> +14%</strong> t.o.v. vorige maand.
                     </p>
                   </div>
                 </div>
@@ -344,22 +332,21 @@ export default async function Home() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '10px',
-                  padding: '12px 16px',
-                  borderRadius: '16px',
+                  padding: '11px 14px',
+                  borderRadius: '14px',
                   background: 'rgba(255,255,255,0.04)',
                   border: '1px solid rgba(255,255,255,0.07)',
                 }}>
-                  <span style={{ flex: 1, fontSize: '13px', color: 'rgba(255,255,255,0.22)', fontWeight: 400 }}>
+                  <span style={{ flex: 1, fontSize: '13px', color: 'rgba(255,255,255,0.20)', textAlign: 'left' }}>
                     Stel een vraag over je bedrijf...
                   </span>
                   <div style={{
-                    width: '32px', height: '32px',
-                    borderRadius: '10px',
+                    width: '30px', height: '30px',
+                    borderRadius: '9px',
                     background: 'var(--brand-gradient)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
                     boxShadow: '0 2px 8px rgba(0,171,231,0.28)',
+                    flexShrink: 0,
                   }}>
                     <svg width="13" height="13" fill="none" stroke="white" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
@@ -373,41 +360,36 @@ export default async function Home() {
       </section>
 
       {/* ── Stats strip ─────────────────────────────────────── */}
-      <section style={{
-        maxWidth: '880px',
-        margin: '0 auto',
-        padding: '0 24px 100px',
-      }}>
+      <section style={{ maxWidth: '880px', margin: '0 auto', padding: '0 24px 96px' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1px',
-          background: 'rgba(255,255,255,0.06)',
           borderRadius: '20px',
           overflow: 'hidden',
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: '1px solid rgba(255,255,255,0.07)',
+          background: 'rgba(255,255,255,0.025)',
         }}>
           {[
-            { number: '< 3s', label: 'Antwoord binnen 3 seconden' },
-            { number: '100%', label: 'Live data uit Trainin' },
-            { number: 'NL', label: 'Volledig in het Nederlands' },
-          ].map((stat) => (
+            { number: '< 3s', label: 'Antwoord binnen 3 seconden', icon: '⚡' },
+            { number: '100%', label: 'Live data uit Trainin', icon: '🔗' },
+            { number: 'NL', label: 'Volledig in het Nederlands', icon: '🇳🇱' },
+          ].map((stat, i) => (
             <div key={stat.label} style={{
-              padding: '32px 24px',
-              background: 'rgba(255,255,255,0.02)',
+              padding: '32px 20px',
               textAlign: 'center',
+              borderRight: i < 2 ? '1px solid rgba(255,255,255,0.06)' : 'none',
             }}>
-              <div style={{
-                fontSize: '32px',
+              <div className="brand-gradient-text" style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontSize: '40px',
                 fontWeight: 800,
-                letterSpacing: '-0.04em',
-                marginBottom: '6px',
-              }}
-              className="brand-gradient-text"
-              >
+                letterSpacing: '-0.02em',
+                lineHeight: 1,
+                marginBottom: '8px',
+              }}>
                 {stat.number}
               </div>
-              <div style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: 400 }}>
+              <div style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: 400, lineHeight: 1.4 }}>
                 {stat.label}
               </div>
             </div>
@@ -415,40 +397,145 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── Bento Grid Features ──────────────────────────────── */}
-      <section style={{ maxWidth: '960px', margin: '0 auto', padding: '0 24px 120px' }}>
-        {/* Section heading */}
+      {/* ── Hoe het werkt ───────────────────────────────────── */}
+      <section id="hoe-het-werkt" style={{ maxWidth: '880px', margin: '0 auto', padding: '0 24px 120px' }}>
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <p style={{
-            fontSize: '11px',
-            fontWeight: 700,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: '#00abe7',
-            marginBottom: '14px',
-          }}>
-            Mogelijkheden
+          <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00abe7', marginBottom: '14px' }}>
+            Simpel & Snel
           </p>
           <h2 style={{
-            fontSize: 'clamp(32px, 5vw, 52px)',
+            fontFamily: "'Barlow Condensed', 'Plus Jakarta Sans', sans-serif",
+            fontSize: 'clamp(36px, 6vw, 60px)',
             fontWeight: 800,
-            letterSpacing: '-0.035em',
-            lineHeight: 1.1,
+            letterSpacing: '-0.01em',
+            lineHeight: 1.05,
             color: '#f5f5f7',
           }}>
-            Alles wat je nodig hebt.<br />
-            <span style={{ color: 'rgba(245,245,247,0.35)' }}>Niets meer, niets minder.</span>
+            HOE HET WERKT
           </h2>
         </div>
 
-        {/* Bento grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '2px',
+          background: 'rgba(255,255,255,0.05)',
+          borderRadius: '24px',
+          overflow: 'hidden',
+          border: '1px solid rgba(255,255,255,0.06)',
+        }}>
+          {[
+            {
+              step: 1,
+              title: 'Koppel je account',
+              body: 'Voer eenmalig je Trainin API Key in. Wij regelen de volledige setup — je hoeft niets technisch te doen.',
+              icon: (
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                </svg>
+              ),
+            },
+            {
+              step: 2,
+              title: 'Stel je vraag',
+              body: 'Typ in gewoon Nederlands wat je wilt weten. Geen filters, geen rapporten — gewoon een vraag zoals aan een collega.',
+              icon: (
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+              ),
+            },
+            {
+              step: 3,
+              title: 'Ontvang inzicht',
+              body: 'De AI haalt live data op uit Trainin en geeft je direct een helder, actionabel antwoord — inclusief tabellen en grafieken.',
+              icon: (
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              ),
+            },
+          ].map((item, idx) => (
+            <div key={item.step} style={{
+              padding: '36px 32px',
+              background: 'var(--bg-base)',
+              position: 'relative',
+            }}>
+              {/* Step number */}
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                marginBottom: '20px',
+              }}>
+                <div style={{
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '8px',
+                  background: 'var(--brand-gradient)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontSize: '14px',
+                  fontWeight: 800,
+                  color: '#fff',
+                }}>
+                  {item.step}
+                </div>
+                <div style={{
+                  width: '36px', height: '36px',
+                  borderRadius: '12px',
+                  background: 'rgba(0,171,231,0.08)',
+                  border: '1px solid rgba(0,171,231,0.15)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  {item.icon}
+                </div>
+              </div>
+              <h3 style={{
+                fontFamily: "'Barlow Condensed', 'Plus Jakarta Sans', sans-serif",
+                fontSize: '22px',
+                fontWeight: 700,
+                letterSpacing: '-0.01em',
+                marginBottom: '10px',
+                color: '#f5f5f7',
+                textTransform: 'uppercase',
+              }}>
+                {item.title}
+              </h3>
+              <p style={{ fontSize: '14px', lineHeight: 1.75, color: 'rgba(245,245,247,0.45)' }}>
+                {item.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Bento Grid Features ──────────────────────────────── */}
+      <section style={{ maxWidth: '960px', margin: '0 auto', padding: '0 24px 120px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00abe7', marginBottom: '14px' }}>
+            Mogelijkheden
+          </p>
+          <h2 style={{
+            fontFamily: "'Barlow Condensed', 'Plus Jakarta Sans', sans-serif",
+            fontSize: 'clamp(36px, 6vw, 60px)',
+            fontWeight: 800,
+            letterSpacing: '-0.01em',
+            lineHeight: 1.05,
+            color: '#f5f5f7',
+          }}>
+            ALLES WAT JE NODIG HEBT.<br />
+            <span style={{ color: 'rgba(245,245,247,0.28)' }}>NIETS MEER, NIETS MINDER.</span>
+          </h2>
+        </div>
+
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(6, 1fr)',
-          gridTemplateRows: 'auto auto',
-          gap: '16px',
+          gap: '14px',
         }}>
-
           {/* Card 1 — large left: Natural language */}
           <div className="card-hover" style={{
             gridColumn: '1 / 4',
@@ -460,22 +547,23 @@ export default async function Home() {
             boxShadow: 'var(--shadow-card)',
             overflow: 'hidden',
             position: 'relative',
+            cursor: 'pointer',
           }}>
             <div style={{
-              position: 'absolute', top: 0, right: 0,
-              width: '200px', height: '200px',
-              background: 'radial-gradient(ellipse, rgba(0,171,231,0.08) 0%, transparent 70%)',
+              position: 'absolute', top: -40, right: -40,
+              width: '220px', height: '220px',
+              background: 'radial-gradient(ellipse, rgba(0,171,231,0.09) 0%, transparent 70%)',
               pointerEvents: 'none',
             }} />
             <div style={{
-              width: '44px', height: '44px',
+              width: '46px', height: '46px',
               borderRadius: '14px',
               background: 'rgba(0,171,231,0.10)',
               border: '1px solid rgba(0,171,231,0.18)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              marginBottom: '20px',
+              marginBottom: '22px',
             }}>
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
+              <svg width="21" height="21" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
               </svg>
             </div>
@@ -483,7 +571,7 @@ export default async function Home() {
               Vraag in gewoon Nederlands
             </h3>
             <p style={{ fontSize: '14px', lineHeight: 1.75, color: 'rgba(245,245,247,0.45)' }}>
-              Geen dashboards, filters of rapporten. Gewoon vragen stellen zoals je dat bij een collega zou doen. De AI begrijpt de context van jouw bedrijf.
+              Geen dashboards, filters of rapporten. Stel vragen zoals je dat bij een collega zou doen. De AI begrijpt de context van jouw bedrijf.
             </p>
           </div>
 
@@ -491,23 +579,24 @@ export default async function Home() {
           <div className="card-hover" style={{
             gridColumn: '4 / 7',
             gridRow: '1 / 2',
-            background: 'linear-gradient(135deg, rgba(0,171,231,0.08) 0%, rgba(0,81,194,0.06) 100%)',
+            background: 'linear-gradient(140deg, rgba(0,171,231,0.09) 0%, rgba(0,81,194,0.07) 100%)',
             borderRadius: '24px',
-            border: '1px solid rgba(0,171,231,0.14)',
+            border: '1px solid rgba(0,171,231,0.16)',
             padding: '36px 36px 32px',
             boxShadow: 'var(--shadow-card)',
             position: 'relative',
             overflow: 'hidden',
+            cursor: 'pointer',
           }}>
             <div style={{
-              width: '44px', height: '44px',
+              width: '46px', height: '46px',
               borderRadius: '14px',
               background: 'rgba(0,171,231,0.12)',
               border: '1px solid rgba(0,171,231,0.22)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              marginBottom: '20px',
+              marginBottom: '22px',
             }}>
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
+              <svg width="21" height="21" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
@@ -517,8 +606,6 @@ export default async function Home() {
             <p style={{ fontSize: '14px', lineHeight: 1.75, color: 'rgba(245,245,247,0.45)' }}>
               De AI haalt automatisch de juiste data op uit jouw Trainin account. Geen wachten, geen handmatige exports.
             </p>
-
-            {/* Decorative stat */}
             <div style={{
               marginTop: '24px',
               display: 'inline-flex',
@@ -527,9 +614,9 @@ export default async function Home() {
               padding: '8px 14px',
               borderRadius: '12px',
               background: 'rgba(0,171,231,0.08)',
-              border: '1px solid rgba(0,171,231,0.15)',
+              border: '1px solid rgba(0,171,231,0.16)',
             }}>
-              <span style={{ fontSize: '18px', fontWeight: 800, color: '#00f2f6', letterSpacing: '-0.04em' }}>+14%</span>
+              <span style={{ fontSize: '20px', fontWeight: 800, fontFamily: "'Barlow Condensed', sans-serif", color: '#00f2f6', letterSpacing: '-0.02em' }}>+14%</span>
               <span style={{ fontSize: '12px', color: 'rgba(245,245,247,0.45)', fontWeight: 500 }}>t.o.v. vorige maand</span>
             </div>
           </div>
@@ -541,26 +628,27 @@ export default async function Home() {
             background: 'var(--bg-card)',
             borderRadius: '24px',
             border: '1px solid var(--border-card)',
-            padding: '30px 30px 28px',
+            padding: '28px 28px 26px',
             boxShadow: 'var(--shadow-card)',
+            cursor: 'pointer',
           }}>
             <div style={{
               width: '44px', height: '44px',
-              borderRadius: '14px',
+              borderRadius: '13px',
               background: 'rgba(0,171,231,0.08)',
               border: '1px solid rgba(0,171,231,0.14)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              marginBottom: '16px',
+              marginBottom: '18px',
             }}>
               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
             <h3 style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.025em', marginBottom: '8px', color: '#f5f5f7' }}>
-              Veilig & privé
+              Veilig &amp; privé
             </h3>
             <p style={{ fontSize: '13px', lineHeight: 1.7, color: 'rgba(245,245,247,0.40)' }}>
-              Jouw Trainin-koppeling wordt veilig beheerd. Alle data blijft versleuteld en altijd van jou.
+              Je credentials worden versleuteld opgeslagen. Data blijft altijd van jou.
             </p>
           </div>
 
@@ -571,16 +659,17 @@ export default async function Home() {
             background: 'var(--bg-card)',
             borderRadius: '24px',
             border: '1px solid var(--border-card)',
-            padding: '30px 30px 28px',
+            padding: '28px 28px 26px',
             boxShadow: 'var(--shadow-card)',
+            cursor: 'pointer',
           }}>
             <div style={{
               width: '44px', height: '44px',
-              borderRadius: '14px',
+              borderRadius: '13px',
               background: 'rgba(124,58,237,0.10)',
               border: '1px solid rgba(124,58,237,0.18)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              marginBottom: '16px',
+              marginBottom: '18px',
             }}>
               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -590,7 +679,7 @@ export default async function Home() {
               Gesprekshistorie
             </h3>
             <p style={{ fontSize: '13px', lineHeight: 1.7, color: 'rgba(245,245,247,0.40)' }}>
-              Alle gesprekken worden opgeslagen zodat je altijd terug kunt kijken.
+              Alle gesprekken worden automatisch opgeslagen zodat je altijd kunt terugkijken.
             </p>
           </div>
 
@@ -598,32 +687,32 @@ export default async function Home() {
           <div className="card-hover" style={{
             gridColumn: '5 / 7',
             gridRow: '2 / 3',
-            background: 'linear-gradient(135deg, rgba(0,171,231,0.06) 0%, rgba(0,81,194,0.04) 100%)',
+            background: 'linear-gradient(140deg, rgba(0,171,231,0.06) 0%, rgba(0,81,194,0.04) 100%)',
             borderRadius: '24px',
-            border: '1px solid rgba(0,171,231,0.12)',
-            padding: '30px 30px 28px',
+            border: '1px solid rgba(0,171,231,0.13)',
+            padding: '28px 28px 26px',
             boxShadow: 'var(--shadow-card)',
+            cursor: 'pointer',
           }}>
             <div style={{
               width: '44px', height: '44px',
-              borderRadius: '14px',
+              borderRadius: '13px',
               background: 'rgba(0,171,231,0.10)',
               border: '1px solid rgba(0,171,231,0.18)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              marginBottom: '16px',
+              marginBottom: '18px',
             }}>
               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#00abe7" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18M10 3v18M14 3v18M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
               </svg>
             </div>
             <h3 style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.025em', marginBottom: '8px', color: '#f5f5f7' }}>
-              Tabellen & CSV
+              Tabellen &amp; CSV
             </h3>
             <p style={{ fontSize: '13px', lineHeight: 1.7, color: 'rgba(245,245,247,0.40)' }}>
-              AI-antwoorden met tabellen exporteer je direct naar CSV.
+              AI-antwoorden met tabellen exporteer je direct naar CSV voor verdere analyse.
             </p>
           </div>
-
         </div>
       </section>
 
@@ -636,15 +725,20 @@ export default async function Home() {
           borderRadius: '28px',
           backdropFilter: 'blur(12px)',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '28px', flexWrap: 'wrap', gap: '12px' }}>
-            <div>
-              <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00abe7', marginBottom: '8px' }}>
-                Voorbeeldvragen
-              </p>
-              <h3 style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '-0.03em', color: '#f5f5f7' }}>
-                Wat kun je vragen?
-              </h3>
-            </div>
+          <div style={{ marginBottom: '28px' }}>
+            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00abe7', marginBottom: '10px' }}>
+              Voorbeeldvragen
+            </p>
+            <h3 style={{
+              fontFamily: "'Barlow Condensed', 'Plus Jakarta Sans', sans-serif",
+              fontSize: '28px',
+              fontWeight: 700,
+              letterSpacing: '-0.01em',
+              color: '#f5f5f7',
+              textTransform: 'uppercase',
+            }}>
+              WAT KUN JE VRAGEN?
+            </h3>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
             {[
@@ -653,26 +747,15 @@ export default async function Home() {
               'Wat is mijn churn rate?',
               'Bereken mijn gemiddelde LTV',
               'Vergelijk omzet met vorige maand',
-              'Geef me een cohortanalyse per instroom-jaar',
-              'Segmenteer mijn klanten: wie zijn mijn goudmijnen?',
+              'Geef me een cohortanalyse',
+              'Wie zijn mijn beste klanten?',
               'Drukste lestijden op dinsdag?',
-              'Welke coach heeft de hoogste bezettingsgraad?',
+              'Hoogste bezettingsgraad per coach?',
               'Mijn top 5 pakketten dit kwartaal',
               'Hoeveel nieuwe leden deze week?',
               'Wat is mijn gemiddelde orderwaarde?',
             ].map((q) => (
-              <span key={q} style={{
-                fontSize: '13px',
-                fontWeight: 500,
-                color: 'rgba(245,245,247,0.45)',
-                padding: '8px 16px',
-                borderRadius: '980px',
-                border: '1px solid rgba(255,255,255,0.07)',
-                background: 'rgba(255,255,255,0.03)',
-                letterSpacing: '-0.01em',
-                transition: 'all 0.15s ease',
-                cursor: 'default',
-              }}>
+              <span key={q} className="pill-tag">
                 &ldquo;{q}&rdquo;
               </span>
             ))}
@@ -689,27 +772,33 @@ export default async function Home() {
       }}>
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0,171,231,0.10) 0%, transparent 70%)',
+          background: `
+            radial-gradient(ellipse 70% 70% at 50% 110%, rgba(0,171,231,0.12) 0%, transparent 65%),
+            radial-gradient(ellipse 40% 40% at 30% 50%, rgba(0,81,194,0.06) 0%, transparent 60%)
+          `,
         }} />
-        <div style={{ position: 'relative', maxWidth: '600px', margin: '0 auto' }}>
+        <div style={{ position: 'relative', maxWidth: '580px', margin: '0 auto' }}>
           <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00abe7', marginBottom: '20px' }}>
             Interesse?
           </p>
           <h2 style={{
-            fontSize: 'clamp(32px, 5vw, 56px)',
+            fontFamily: "'Barlow Condensed', 'Plus Jakarta Sans', sans-serif",
+            fontSize: 'clamp(40px, 7vw, 72px)',
             fontWeight: 800,
-            letterSpacing: '-0.04em',
+            letterSpacing: '-0.01em',
             color: '#f5f5f7',
-            lineHeight: 1.1,
-            marginBottom: '16px',
+            lineHeight: 1.0,
+            marginBottom: '20px',
+            textTransform: 'uppercase',
           }}>
-            Wij regelen de volledige<br />setup voor jou.
+            WIJ REGELEN DE<br />VOLLEDIGE SETUP.
           </h2>
-          <p style={{ fontSize: '16px', color: 'rgba(245,245,247,0.40)', marginBottom: '40px', lineHeight: 1.6 }}>
-            Neem contact op en wij koppelen jouw Trainin-account — jij hoeft niets technisch te doen.
+          <p style={{ fontSize: '16px', color: 'rgba(245,245,247,0.40)', marginBottom: '44px', lineHeight: 1.65 }}>
+            Neem contact op en wij koppelen jouw Trainin-account —
+            jij hoeft niets technisch te doen.
           </p>
-          {isLoggedIn ? (
-            <Link href="/chat" style={{
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href={ctaHref} style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
@@ -721,34 +810,16 @@ export default async function Home() {
               textDecoration: 'none',
               background: 'var(--brand-gradient)',
               letterSpacing: '-0.02em',
-              boxShadow: '0 4px 32px rgba(0,171,231,0.35), 0 1px 3px rgba(0,0,0,0.4)',
+              boxShadow: '0 4px 36px rgba(0,171,231,0.40), 0 1px 3px rgba(0,0,0,0.4)',
+              cursor: 'pointer',
+              transition: 'transform 0.15s ease, box-shadow 0.15s ease',
             }}>
-              Open de Chat
+              {ctaLabel}
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
-          ) : (
-            <Link href="/login" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              fontSize: '16px',
-              fontWeight: 700,
-              color: '#fff',
-              padding: '16px 36px',
-              borderRadius: '18px',
-              textDecoration: 'none',
-              background: 'var(--brand-gradient)',
-              letterSpacing: '-0.02em',
-              boxShadow: '0 4px 32px rgba(0,171,231,0.35), 0 1px 3px rgba(0,0,0,0.4)',
-            }}>
-              Inloggen
-              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
-          )}
+          </div>
         </div>
       </section>
 
@@ -756,7 +827,7 @@ export default async function Home() {
       <footer style={{
         maxWidth: '960px',
         margin: '0 auto',
-        padding: '28px 24px',
+        padding: '24px 24px 32px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -765,7 +836,7 @@ export default async function Home() {
         borderTop: '1px solid rgba(255,255,255,0.05)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <p style={{ fontSize: '12px', color: 'rgba(245,245,247,0.4)', fontWeight: 400 }}>
+          <p style={{ fontSize: '12px', color: 'rgba(245,245,247,0.35)', fontWeight: 400 }}>
             Een initiatief van
           </p>
           <a
@@ -777,19 +848,19 @@ export default async function Home() {
             <Image
               src="/deaistrateeg-logo.png"
               alt="De AI Strateeg"
-              width={100}
+              width={96}
               height={24}
-              style={{ display: 'block', filter: 'invert(1)' }}
+              style={{ display: 'block', filter: 'invert(1)', opacity: 0.7 }}
             />
           </a>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <p style={{ fontSize: '12px', color: 'rgba(245,245,247,0.22)' }}>
+          <p style={{ fontSize: '12px', color: 'rgba(245,245,247,0.20)' }}>
             © {new Date().getFullYear()} · Alle rechten voorbehouden
           </p>
           <Link href="/admin" style={{
             fontSize: '11px',
-            color: 'rgba(245,245,247,0.15)',
+            color: 'rgba(245,245,247,0.12)',
             textDecoration: 'none',
             padding: '4px 8px',
             borderRadius: '6px',

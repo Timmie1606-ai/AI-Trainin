@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss/preflight.css";
 
 :root {
@@ -99,6 +99,54 @@ body {
 
 .footer-logo-link { opacity: 0.8; transition: opacity 0.2s; }
 .footer-logo-link:hover { opacity: 1; }
+
+/* Display font — Barlow Condensed for big headings */
+.font-display {
+  font-family: 'Barlow Condensed', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Step number circle */
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* Pill tag */
+.pill-tag {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(245,245,247,0.50);
+  padding: 7px 16px;
+  border-radius: 980px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  letter-spacing: -0.01em;
+  transition: all 0.15s ease;
+  cursor: default;
+  white-space: nowrap;
+}
+.pill-tag:hover {
+  border-color: rgba(0,171,231,0.25);
+  background: rgba(0,171,231,0.06);
+  color: rgba(245,245,247,0.75);
+}
+
+/* Focus ring — accessible */
+:focus-visible {
+  outline: 2px solid #00abe7;
+  outline-offset: 2px;
+}
 
 /* Custom scrollbar — thin & elegant */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
