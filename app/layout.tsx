@@ -2,18 +2,22 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Traininsight — Stel vragen over je bedrijf",
-  description: "Vraag in gewoon Nederlands naar je omzet, klanten en boekingen. Direct inzicht uit je Trainin data, zonder dashboards.",
+  title: "Traininsight — AI-assistent voor Trainin-ondernemers",
+  description: "Vraag in gewoon Nederlands naar je omzet, klanten en boekingen. Direct inzicht uit je Trainin data — zonder dashboards, filters of rapporten.",
+  keywords: ["Trainin", "AI", "omzet", "analytics", "fitness", "sportschool", "boekingen", "inzicht"],
+  authors: [{ name: "De AI Strateeg", url: "https://deaistrateeg.nl" }],
+  robots: "index, follow",
   openGraph: {
-    title: "Traininsight",
-    description: "Vraag in gewoon Nederlands naar je omzet, klanten en boekingen — rechtstreeks uit Trainin.",
+    title: "Traininsight — AI-assistent voor Trainin-ondernemers",
+    description: "Vraag in gewoon Nederlands naar je omzet, klanten en boekingen — rechtstreeks uit Trainin. Geen dashboards, gewoon antwoorden.",
     type: "website",
     locale: "nl_NL",
+    siteName: "Traininsight",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Traininsight",
-    description: "Vraag in gewoon Nederlands naar je omzet, klanten en boekingen — rechtstreeks uit Trainin.",
+    title: "Traininsight — AI voor Trainin-ondernemers",
+    description: "Stel vragen over je bedrijf in gewoon Nederlands. Direct inzicht uit je Trainin data.",
   },
 };
 
@@ -27,6 +31,9 @@ export default function RootLayout({
       <head>
         <script src="https://cdn.tailwindcss.com" async></script>
         <link rel="icon" type="image/svg+xml" href="/traininsight-favicon.svg" />
+        <link rel="apple-touch-icon" href="/traininsight-favicon.svg" />
+        <meta name="theme-color" content="#050d1a" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body
         className="antialiased"

@@ -44,7 +44,7 @@ export default async function Home() {
           justifyContent: 'space-between',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Image src="/trainin-logo-cropped.svg" alt="Traininsight" width={170} height={64} priority style={{ display: 'block', objectFit: 'contain' }} />
+            <Image src="/trainin-logo-color.svg" alt="Traininsight" width={192} height={44} priority style={{ display: 'block', objectFit: 'contain' }} />
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
