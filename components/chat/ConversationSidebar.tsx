@@ -69,8 +69,8 @@ export default function ConversationSidebar({
           marginBottom: '12px',
           paddingLeft: '4px',
         }}>
-          <div style={{ width: '40px', height: '40px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
-            <img src="/traininsight-favicon.svg" alt="Traininsight" width={40} height={40} style={{ display: 'block', objectFit: 'cover', width: '100%', height: '100%' }} />
+          <div style={{ width: '73px', height: '40px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
+            <img src="/traininsight-favicon.svg" alt="Traininsight" width={73} height={40} style={{ display: 'block', objectFit: 'contain', width: '100%', height: '100%' }} />
           </div>
           <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
             Gesprekken

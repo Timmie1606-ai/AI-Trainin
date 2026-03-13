@@ -234,7 +234,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
       {!isUser && (
         <div style={{
           flexShrink: 0,
-          width: '36px',
+          width: '66px',
           height: '36px',
           borderRadius: '10px',
           overflow: 'hidden',
@@ -244,9 +244,9 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
           <Image
             src="/traininsight-favicon.svg"
             alt="Traininsight"
-            width={36}
+            width={66}
             height={36}
-            style={{ display: 'block', objectFit: 'cover', width: '100%', height: '100%' }}
+            style={{ display: 'block', objectFit: 'contain', width: '100%', height: '100%' }}
           />
         </div>
       )}

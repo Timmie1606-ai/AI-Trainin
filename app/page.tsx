@@ -44,7 +44,7 @@ export default async function Home() {
           justifyContent: 'space-between',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Image src="/trainin-logo-color.svg" alt="Traininsight" width={192} height={44} priority style={{ display: 'block', objectFit: 'contain' }} />
+            <Image src="/trainin-logo-color.svg" alt="Traininsight" width={81} height={44} priority style={{ display: 'block', objectFit: 'contain' }} />
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -302,8 +302,8 @@ export default async function Home() {
 
                 {/* AI bubble */}
                 <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
-                  <div style={{ width: '34px', height: '34px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
-                    <Image src="/traininsight-favicon.svg" alt="Traininsight" width={34} height={34} style={{ display: 'block', width: '100%', height: '100%' }} />
+                  <div style={{ width: '62px', height: '34px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0, background: 'rgba(0,171,231,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Image src="/traininsight-favicon.svg" alt="Traininsight" width={62} height={34} style={{ display: 'block', objectFit: 'contain' }} />
                   </div>
                   <div style={{
                     padding: '14px 18px',

@@ -89,8 +89,8 @@ export default function MessageList({ messages, isLoading, onSend }: MessageList
         <div style={{ width: '100%', maxWidth: '680px' }}>
           {/* Welcome heading */}
           <div style={{ textAlign: 'center', marginBottom: '44px' }}>
-            <div style={{ width: '120px', height: '120px', borderRadius: '28px', overflow: 'hidden', margin: '0 auto 20px', boxShadow: '0 8px 32px rgba(0,171,231,0.28)' }}>
-              <img src="/traininsight-favicon.svg" alt="Traininsight" width={120} height={120} style={{ display: 'block', objectFit: 'cover', width: '100%', height: '100%' }} />
+            <div style={{ width: '220px', height: '120px', borderRadius: '20px', overflow: 'hidden', margin: '0 auto 20px', boxShadow: '0 8px 32px rgba(0,171,231,0.28)' }}>
+              <img src="/traininsight-favicon.svg" alt="Traininsight" width={220} height={120} style={{ display: 'block', objectFit: 'contain', width: '100%', height: '100%' }} />
             </div>
             <h2 style={{
               fontSize: '24px',

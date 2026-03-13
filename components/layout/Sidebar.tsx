@@ -48,16 +48,15 @@ export default function Sidebar() {
         boxShadow: '1px 0 0 var(--border-subtle)',
       }}
     >
-      {/* Traininsight favicon icoon */}
+      {/* Traininsight logo icoon */}
       <Link href="/chat" title="Traininsight" className="mb-4 flex items-center justify-center">
-        <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center">
+        <div style={{ width: '48px', height: '26px', borderRadius: '8px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Image
             src="/traininsight-favicon.svg"
             alt="Traininsight"
-            width={36}
-            height={36}
-            className="w-9 h-9"
-            style={{ objectFit: 'cover', display: 'block' }}
+            width={48}
+            height={26}
+            style={{ objectFit: 'contain', display: 'block' }}
           />
         </div>
       </Link>
