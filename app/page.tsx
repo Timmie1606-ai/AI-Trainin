@@ -29,7 +29,7 @@ export default async function Home() {
         maxWidth: '960px',
         backdropFilter: 'blur(28px) saturate(200%)',
         WebkitBackdropFilter: 'blur(28px) saturate(200%)',
-        background: 'rgba(10, 12, 18, 0.82)',
+        background: 'rgba(28, 35, 60, 0.90)',
         border: '1px solid rgba(255,255,255,0.08)',
         borderRadius: '20px',
         boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)',
@@ -41,7 +41,7 @@ export default async function Home() {
           justifyContent: 'space-between',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Image src="/trainin-logo-cropped.svg" alt="Traininsight" width={188} height={70} priority style={{ display: 'block', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
+            <Image src="/trainin-logo-cropped.svg" alt="Traininsight" width={188} height={70} priority style={{ display: 'block', objectFit: 'contain' }} />
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -649,15 +649,17 @@ export default async function Home() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
             {[
               'Hoeveel omzet deze maand?',
-              'Welke klant boekt het meest?',
-              'Hoeveel nieuwe leden deze week?',
-              'Drukste lestijden op dinsdag?',
               'Welke klanten dreigen weg te lopen?',
-              'Vergelijk omzet met vorige maand',
-              'Hoeveel sessies staan er ingepland?',
-              'Mijn top 5 producten dit kwartaal',
               'Wat is mijn churn rate?',
               'Bereken mijn gemiddelde LTV',
+              'Vergelijk omzet met vorige maand',
+              'Geef me een cohortanalyse per instroom-jaar',
+              'Segmenteer mijn klanten: wie zijn mijn goudmijnen?',
+              'Drukste lestijden op dinsdag?',
+              'Welke coach heeft de hoogste bezettingsgraad?',
+              'Mijn top 5 pakketten dit kwartaal',
+              'Hoeveel nieuwe leden deze week?',
+              'Wat is mijn gemiddelde orderwaarde?',
             ].map((q) => (
               <span key={q} style={{
                 fontSize: '13px',

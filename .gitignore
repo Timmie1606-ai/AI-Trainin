@@ -16,3 +16,4 @@ next-env.d.ts
 
 # Ignore the temporary gitignore
 .gitignore.subdirectory
+.mcp.json
