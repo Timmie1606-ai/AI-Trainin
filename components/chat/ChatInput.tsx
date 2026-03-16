@@ -149,8 +149,9 @@ export default function ChatInput({ onSend, disabled, placeholder }: ChatInputPr
         color: 'var(--text-muted)',
         marginTop: '10px',
         fontWeight: 400,
+        lineHeight: 1.5,
       }}>
-        Enter om te sturen · Shift+Enter voor nieuwe regel
+        Traininsight kan fouten maken — controleer altijd belangrijke cijfers in je Trainin-dashboard.
       </p>
     </div>
   )

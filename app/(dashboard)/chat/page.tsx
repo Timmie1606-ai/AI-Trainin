@@ -1,9 +1,25 @@
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import ChatWindow from '@/components/chat/ChatWindow'
+import TrialExpired from '@/components/chat/TrialExpired'
+
+const TRIAL_DAYS = 7
 
 export default async function ChatPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
+
+  // Proefperiode check
+  const createdAt = new Date(user!.created_at)
+  const daysSinceCreation = (Date.now() - createdAt.getTime()) / (1000 * 60 * 60 * 24)
+  const trialExpired = daysSinceCreation > TRIAL_DAYS
+
+  if (trialExpired) {
+    return (
+      <div className="h-full flex flex-col">
+        <TrialExpired />
+      </div>
+    )
+  }
 
   // Pre-fetch gesprekken
   const { data: conversations } = await supabase

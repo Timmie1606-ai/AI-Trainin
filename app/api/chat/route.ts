@@ -22,7 +22,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Niet ingelogd' }, { status: 401 })
   }
 
-  // 2. Rate limit check
+  // 2. Proefperiode check
+  const TRIAL_DAYS = 7
+  const createdAt = new Date(user.created_at)
+  const daysSinceCreation = (Date.now() - createdAt.getTime()) / (1000 * 60 * 60 * 24)
+  if (daysSinceCreation > TRIAL_DAYS) {
+    return NextResponse.json(
+      { error: 'Je proefperiode van 7 dagen is verlopen. Neem contact op via https://tidycal.com/deaistrateeg/trainin om verder te gaan.' },
+      { status: 403 }
+    )
+  }
+
+  // 3. Rate limit check
   const rateLimit = checkRateLimit(user.id)
   if (!rateLimit.allowed) {
     return NextResponse.json(
