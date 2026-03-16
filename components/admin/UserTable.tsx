@@ -15,8 +15,22 @@ interface User {
   email: string
   display_name: string | null
   is_admin: boolean
+  trial_expires_at: string | null
   created_at: string
   credentials: UserCredentials | null
+}
+
+function getTrialLabel(user: User): { label: string; color: string } {
+  if (user.is_admin) return { label: '∞ Admin', color: '#00abe7' }
+  if (!user.trial_expires_at) {
+    const days = (Date.now() - new Date(user.created_at).getTime()) / (1000 * 60 * 60 * 24)
+    if (days > 7) return { label: 'Verlopen', color: '#ef4444' }
+    return { label: `${Math.ceil(7 - days)}d resterend`, color: '#f59e0b' }
+  }
+  if (new Date(user.trial_expires_at).getFullYear() > 2090) return { label: '∞ Permanent', color: '#10b981' }
+  if (new Date(user.trial_expires_at) < new Date()) return { label: 'Verlopen', color: '#ef4444' }
+  const days = Math.ceil((new Date(user.trial_expires_at).getTime() - Date.now()) / (1000 * 60 * 60 * 24))
+  return { label: `${days}d resterend`, color: '#f59e0b' }
 }
 
 const inputStyle: React.CSSProperties = {
@@ -69,6 +83,28 @@ export default function UserTable({ initialUsers }: { initialUsers: User[] }) {
   // Verwijderen
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null)
   const [deleteStatus, setDeleteStatus] = useState<'idle' | 'loading'>('idle')
+
+  // Trial management
+  const [trialSavingId, setTrialSavingId] = useState<string | null>(null)
+
+  async function updateTrial(userId: string, trial_expires_at: string) {
+    setTrialSavingId(userId)
+    const res = await fetch('/api/admin/users', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId, trial_expires_at }),
+    })
+    if (res.ok) {
+      setUsers((prev) => prev.map((u) => u.id === userId ? { ...u, trial_expires_at } : u))
+    }
+    setTrialSavingId(null)
+  }
+
+  function extendTrial(user: User, days: number) {
+    const base = user.trial_expires_at && new Date(user.trial_expires_at) > new Date()
+      ? new Date(user.trial_expires_at) : new Date()
+    updateTrial(user.id, new Date(base.getTime() + days * 86400000).toISOString())
+  }
 
   // Credentials formulier per gebruiker
   const [editingCredentials, setEditingCredentials] = useState<string | null>(null)
@@ -302,6 +338,24 @@ export default function UserTable({ initialUsers }: { initialUsers: User[] }) {
                       <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{user.email}</span>
                     </div>
                   </div>
+
+                  {/* Trial status + knoppen */}
+                  {!user.is_admin && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                      <span style={{
+                        fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '7px',
+                        color: getTrialLabel(user).color,
+                        background: `${getTrialLabel(user).color}18`,
+                        border: `1px solid ${getTrialLabel(user).color}30`,
+                      }}>
+                        {getTrialLabel(user).label}
+                      </span>
+                      <button onClick={() => extendTrial(user, 7)} disabled={!!trialSavingId} style={{ ...btnSecondary, fontSize: '11px', padding: '4px 8px' }}>+7d</button>
+                      <button onClick={() => extendTrial(user, 30)} disabled={!!trialSavingId} style={{ ...btnSecondary, fontSize: '11px', padding: '4px 8px' }}>+30d</button>
+                      <button onClick={() => updateTrial(user.id, '2099-01-01T00:00:00Z')} disabled={!!trialSavingId} style={{ ...btnSecondary, fontSize: '11px', padding: '4px 8px', color: '#10b981', border: '1px solid rgba(16,185,129,0.2)' }}>∞</button>
+                      <button onClick={() => updateTrial(user.id, '2000-01-01T00:00:00Z')} disabled={!!trialSavingId} style={{ ...btnSecondary, fontSize: '11px', padding: '4px 8px', color: '#ef4444', border: '1px solid rgba(239,68,68,0.2)' }}>Blokkeer</button>
+                    </div>
+                  )}
 
                   {/* Credential status + knop */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>

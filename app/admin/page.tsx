@@ -9,7 +9,7 @@ export default async function AdminPage() {
 
   const { data: users } = await serviceClient
     .from('user_profiles')
-    .select('id, email, display_name, is_admin, created_at')
+    .select('id, email, display_name, is_admin, trial_expires_at, created_at')
     .order('created_at', { ascending: false })
 
   const { data: credentials } = await serviceClient
