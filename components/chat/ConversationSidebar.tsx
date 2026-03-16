@@ -61,21 +61,14 @@ export default function ConversationSidebar({
         padding: '18px 14px 12px',
         borderBottom: '1px solid var(--border-subtle)',
       }}>
-        {/* Logo mark */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          marginBottom: '12px',
-          paddingLeft: '4px',
-        }}>
-          <div style={{ width: '73px', height: '40px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
-            <img src="/traininsight-favicon.svg" alt="Traininsight" width={73} height={40} style={{ display: 'block', objectFit: 'contain', width: '100%', height: '100%' }} />
-          </div>
-          <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
-            Gesprekken
-          </span>
+        {/* Logo */}
+        <div style={{ marginBottom: '14px' }}>
+          <img src="/logo.png" alt="Traininsight" style={{ height: '36px', width: 'auto', display: 'block' }} />
         </div>
+        {/* Sectie label */}
+        <p style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: '0', paddingLeft: '4px' }}>
+          Gesprekken
+        </p>
 
         {/* New conversation button */}
         <button

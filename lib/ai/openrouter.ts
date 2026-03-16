@@ -4,15 +4,45 @@ import { TRAININ_TOOLS, type ToolName } from '@/lib/trainin/tools'
 import { VERCEL_TOOLS, type VercelToolName } from '@/lib/vercel/tools'
 import { VercelClient } from '@/lib/vercel/client'
 
-// OpenAI SDK configureren voor Google Gemini (OpenAI-compatibele endpoint)
-function getOpenRouterClient() {
-  const apiKey = process.env.GEMINI_API_KEY
-  if (!apiKey) throw new Error('GEMINI_API_KEY is niet ingesteld')
+// OpenAI SDK — geeft twee opties: OpenRouter primair, Gemini als fallback
+function getAIClients(): Array<{ client: OpenAI; model: string; name: string }> {
+  const clients: Array<{ client: OpenAI; model: string; name: string }> = []
 
-  return new OpenAI({
-    baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
-    apiKey,
-  })
+  const openrouterKey = process.env.OPENROUTER_API_KEY
+  if (openrouterKey) {
+    clients.push({
+      name: 'OpenRouter',
+      model: process.env.OPENROUTER_MODEL ?? 'openrouter/hunter-alpha',
+      client: new OpenAI({
+        baseURL: 'https://openrouter.ai/api/v1',
+        apiKey: openrouterKey,
+        defaultHeaders: {
+          'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL ?? 'https://traininsight.nl',
+          'X-Title': 'Traininsight',
+        },
+      }),
+    })
+  }
+
+  const geminiKey = process.env.GEMINI_API_KEY
+  if (geminiKey) {
+    clients.push({
+      name: 'Gemini',
+      model: process.env.GEMINI_MODEL ?? 'gemini-2.0-flash',
+      client: new OpenAI({
+        baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
+        apiKey: geminiKey,
+      }),
+    })
+  }
+
+  if (clients.length === 0) throw new Error('Geen AI API key ingesteld (OPENROUTER_API_KEY of GEMINI_API_KEY)')
+  return clients
+}
+
+// Backwards compat helper — geeft de eerste beschikbare client
+function getAIClient(): { client: OpenAI; model: string } {
+  return getAIClients()[0]
 }
 
 export interface ChatMessage {
@@ -131,8 +161,10 @@ export async function runAgentLoop(params: {
   onEvent: (event: string, data: unknown) => void
 }): Promise<AgentResult> {
   const { messages, systemPrompt, traininClient, onEvent } = params
-  const model = process.env.GEMINI_MODEL ?? 'gemini-2.0-flash'
-  const openai = getOpenRouterClient()
+  const aiClients = getAIClients()
+  let clientIndex = 0
+  let { client: openai, model, name: providerName } = aiClients[clientIndex]
+  console.log('[AI] Using provider:', providerName, 'model:', model)
 
   const toolCalls: ToolCallRecord[] = []
   let totalInputTokens = 0
@@ -158,9 +190,20 @@ export async function runAgentLoop(params: {
         stream_options: { include_usage: true }
       })
     } catch (err: any) {
+      console.error('[AI] API error on', providerName, ':', err.status, err.message)
       const status = err.status || err.statusCode
+      // Probeer volgende provider als die beschikbaar is
+      if (clientIndex + 1 < aiClients.length) {
+        clientIndex++
+        const next = aiClients[clientIndex]
+        openai = next.client
+        model = next.model
+        providerName = next.name
+        console.log('[AI] Falling back to:', providerName, model)
+        continue
+      }
       if (status === 404) {
-        throw new Error(`Model '${model}' niet gevonden. Controleer de GEMINI_MODEL variant in je .env.local bestand.`)
+        throw new Error(`Model '${model}' niet gevonden. Controleer OPENROUTER_MODEL of GEMINI_MODEL in je .env.local bestand.`)
       }
       if (status === 400) {
         throw new Error(`AI-provider fout (400): Waarschijnlijk is de context te groot geworden door te veel data. Probeer een specifiekere vraag te stellen.`)

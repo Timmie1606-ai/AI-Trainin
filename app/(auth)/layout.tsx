@@ -24,7 +24,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         borderBottom: '1px solid rgba(255,255,255,0.05)',
       }}>
         <Link href="/">
-          <Image src="/logo.svg" alt="Traininsight" width={110} height={60} priority style={{ display: 'block', objectFit: 'contain' }} />
+          <Image src="/logo.png" alt="Traininsight" width={280} height={99} priority style={{ display: 'block', objectFit: 'contain' }} />
         </Link>
       </header>
 

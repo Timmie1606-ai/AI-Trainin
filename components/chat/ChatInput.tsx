@@ -93,6 +93,7 @@ export default function ChatInput({ onSend, disabled, placeholder }: ChatInputPr
           type="submit"
           disabled={!canSend}
           aria-label="Verstuur bericht"
+          suppressHydrationWarning
           style={{
             flexShrink: 0,
             width: '36px',
