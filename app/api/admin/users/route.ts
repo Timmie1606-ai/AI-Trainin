@@ -12,7 +12,7 @@ export async function GET() {
 
   const { data: users, error } = await serviceClient
     .from('user_profiles')
-    .select('id, email, display_name, is_admin, created_at')
+    .select('id, email, display_name, is_admin, trial_expires_at, created_at')
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -71,4 +71,41 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({ user: { id: data.user.id, email: data.user.email } })
+}
+
+const patchSchema = z.object({
+  userId: z.string().uuid(),
+  trial_expires_at: z.string().nullable(),
+})
+
+// PATCH: proefperiode aanpassen
+export async function PATCH(request: Request) {
+  const isAdmin = await checkIsAdmin()
+  if (!isAdmin) return NextResponse.json({ error: 'Geen toegang' }, { status: 403 })
+
+  let body: unknown
+  try {
+    body = await request.json()
+  } catch {
+    return NextResponse.json({ error: 'Ongeldig JSON' }, { status: 400 })
+  }
+
+  const parsed = patchSchema.safeParse(body)
+  if (!parsed.success) {
+    return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 })
+  }
+
+  const { userId, trial_expires_at } = parsed.data
+
+  const serviceClient = createServiceClient()
+  const { error } = await serviceClient
+    .from('user_profiles')
+    .update({ trial_expires_at, updated_at: new Date().toISOString() })
+    .eq('id', userId)
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+
+  return NextResponse.json({ success: true })
 }

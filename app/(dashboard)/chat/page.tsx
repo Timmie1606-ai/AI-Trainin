@@ -8,10 +8,25 @@ export default async function ChatPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Proefperiode check
-  const createdAt = new Date(user!.created_at)
-  const daysSinceCreation = (Date.now() - createdAt.getTime()) / (1000 * 60 * 60 * 24)
-  const trialExpired = daysSinceCreation > TRIAL_DAYS
+  // Proefperiode check via user_profiles (admin + trial_expires_at override)
+  const serviceClient = createServiceClient()
+  const { data: profile } = await serviceClient
+    .from('user_profiles')
+    .select('is_admin, trial_expires_at')
+    .eq('id', user!.id)
+    .single()
+
+  const isAdmin = profile?.is_admin ?? false
+
+  let trialExpired = false
+  if (!isAdmin) {
+    if (profile?.trial_expires_at) {
+      trialExpired = new Date(profile.trial_expires_at) < new Date()
+    } else {
+      const daysSinceCreation = (Date.now() - new Date(user!.created_at).getTime()) / (1000 * 60 * 60 * 24)
+      trialExpired = daysSinceCreation > TRIAL_DAYS
+    }
+  }
 
   if (trialExpired) {
     return (
@@ -30,7 +45,6 @@ export default async function ChatPage() {
     .limit(30)
 
   // Check credential status
-  const serviceClient = createServiceClient()
   const { data: creds } = await serviceClient
     .from('trainin_credentials')
     .select('is_verified, trainin_account_name')

@@ -15,6 +15,7 @@ export type Database = {
           email: string
           display_name: string | null
           is_admin: boolean
+          trial_expires_at: string | null
           created_at: string
           updated_at: string
         }
@@ -23,6 +24,7 @@ export type Database = {
           email: string
           display_name?: string | null
           is_admin?: boolean
+          trial_expires_at?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -31,6 +33,7 @@ export type Database = {
           email?: string
           display_name?: string | null
           is_admin?: boolean
+          trial_expires_at?: string | null
           updated_at?: string
         }
         Relationships: []

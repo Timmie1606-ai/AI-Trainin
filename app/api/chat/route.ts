@@ -22,15 +22,29 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Niet ingelogd' }, { status: 401 })
   }
 
-  // 2. Proefperiode check
+  // 2. Proefperiode check via user_profiles
   const TRIAL_DAYS = 7
-  const createdAt = new Date(user.created_at)
-  const daysSinceCreation = (Date.now() - createdAt.getTime()) / (1000 * 60 * 60 * 24)
-  if (daysSinceCreation > TRIAL_DAYS) {
-    return NextResponse.json(
-      { error: 'Je proefperiode van 7 dagen is verlopen. Neem contact op via https://tidycal.com/deaistrateeg/trainin om verder te gaan.' },
-      { status: 403 }
-    )
+  const { data: profile } = await serviceClient
+    .from('user_profiles')
+    .select('is_admin, trial_expires_at')
+    .eq('id', user.id)
+    .single()
+
+  const isAdmin = profile?.is_admin ?? false
+  if (!isAdmin) {
+    let trialExpired = false
+    if (profile?.trial_expires_at) {
+      trialExpired = new Date(profile.trial_expires_at) < new Date()
+    } else {
+      const days = (Date.now() - new Date(user.created_at).getTime()) / (1000 * 60 * 60 * 24)
+      trialExpired = days > TRIAL_DAYS
+    }
+    if (trialExpired) {
+      return NextResponse.json(
+        { error: 'Je proefperiode van 7 dagen is verlopen. Neem contact op via https://tidycal.com/deaistrateeg/trainin om verder te gaan.' },
+        { status: 403 }
+      )
+    }
   }
 
   // 3. Rate limit check
