@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
@@ -48,15 +47,14 @@ export default function Sidebar() {
         boxShadow: '1px 0 0 var(--border-subtle)',
       }}
     >
-      {/* Traininsight logo icoon — klein icoontje voor smalle sidebar */}
-      <Link href="/chat" title="Traininsight" className="mb-4 flex items-center justify-center" style={{ width: '40px', height: '40px', overflow: 'hidden', flexShrink: 0 }}>
-        <Image
-          src="/logo.png"
-          alt="Traininsight"
-          width={120}
-          height={43}
-          style={{ objectFit: 'cover', objectPosition: 'left center', display: 'block', width: '120px', height: '43px', flexShrink: 0 }}
-        />
+      {/* Brand dot */}
+      <Link href="/chat" title="Traininsight" className="mb-3 flex items-center justify-center" style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(0,171,231,0.10)', border: '1px solid rgba(0,171,231,0.18)', flexShrink: 0 }}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00abe7" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 3v18h18" />
+          <path d="M18 17V9" />
+          <path d="M13 17V5" />
+          <path d="M8 17v-3" />
+        </svg>
       </Link>
 
       {/* Navigatie */}
