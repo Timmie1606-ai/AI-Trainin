@@ -24,6 +24,7 @@ export async function POST(request: Request) {
 
   // 2. Proefperiode check via user_profiles
   const TRIAL_DAYS = 7
+  const serviceClient = createServiceClient()
   const { data: profile } = await serviceClient
     .from('user_profiles')
     .select('is_admin, trial_expires_at')
@@ -80,7 +81,6 @@ export async function POST(request: Request) {
   const { message, conversationId } = parsed.data
 
   // 3. Credentials ophalen en decrypten
-  const serviceClient = createServiceClient()
   const { data: creds } = await serviceClient
     .from('trainin_credentials')
     .select('encrypted_api_key, api_key_iv, encrypted_tenant_id, tenant_id_iv, is_verified')
