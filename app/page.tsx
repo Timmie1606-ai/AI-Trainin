@@ -892,18 +892,13 @@ export default async function Home() {
             Een initiatief van
           </p>
           <a
-            href="https://deaistrateeg.nl"
+            href="https://www.deaistrateeg.nl"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-logo-link"
+            style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(245,245,247,0.6)', textDecoration: 'none' }}
           >
-            <Image
-              src="/deaistrateeg-logo.png"
-              alt="De AI Strateeg"
-              width={96}
-              height={24}
-              style={{ display: 'block', filter: 'invert(1)', opacity: 0.7 }}
-            />
+            DeAIStrateeg
           </a>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
